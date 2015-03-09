@@ -1,11 +1,11 @@
 
-public class Stocks {
+public class Stock {
 
 	String stockType;
 	int stockAmount;
 	int stockValue;
 	
-	public Stocks(String stockType)
+	public Stock(String stockType)
 	{
 		this.stockValue = 10;
 		this.stockAmount = 30; //Check this number
