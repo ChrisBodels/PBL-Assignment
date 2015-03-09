@@ -21,10 +21,15 @@ public class Player {
 		this.steelStocks = 0;
 	}
 	
-	public void setLoanStatus()
+	public void setLoanStatus(boolean loanStatus)
 	{
-		
-	}
+		 
+			if (!loanStatus) {
+				this.loanStatus = true;
+			} else {
+				this.loanStatus = false;
+			}
+		 
 	
 	public int getBalance()
 	{
