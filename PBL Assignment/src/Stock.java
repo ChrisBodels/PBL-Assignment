@@ -1,14 +1,14 @@
 
-public class Stock {
+public class Stocks {
 
 	String stockType;
 	int stockAmount;
 	int stockValue;
 	
-	public Stock(String stockType)
+	public Stocks(String stockType)
 	{
 		this.stockValue = 10;
-		this.stockAmount = 30; //Check this number
+		this.stockAmount = 28; //Check this number
 		this.stockType = stockType;
 	}
 	
@@ -17,9 +17,12 @@ public class Stock {
 		return this.stockAmount;
 	}
 	
-	public void setStockAmount()
+	public void setStockAmount(int stockAmount)
 	{
-		
+		if(stockAmount >= 0 && stockAmount <= 28)
+		{
+			this.stockAmount = stockAmount;
+		}
 	}
 	
 	public int getStockValue()
@@ -27,13 +30,16 @@ public class Stock {
 		return this.stockValue;
 	}
 	
-	public void setStockValue()
+	public void setStockValue(int stockValue)
 	{
-		
+		if(stockValue >= 0 && stockValue <=20)
+		{
+			this.stockValue = stockValue;
+		}
 	}
 	
 	public String toString()
 	{
-		return ""; //Fill this in
+		return "Stock Type: " + stockType + "/nStock Amount: " + stockAmount + "/nStock Value: " + stockValue;
 	}
 }
