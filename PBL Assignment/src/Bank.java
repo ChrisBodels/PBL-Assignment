@@ -6,11 +6,17 @@ public class Bank {
 	private Card card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
 				 card11, card12, card13, card14, card15, card16, card17, card18, card19, card20,
 				 card21, card22, card23, card24, card25;
+				 
+	private int motorPool, shippingPool, steelPool, storesPool;
 	
 	public Bank()
 	{
 		cards = new Card[25];
 		
+		motorPool = 28;
+		shippingPool = 28;
+		steelPool = 28;
+		storesPool = 28;
 		
 		
 		initialiseCards();
