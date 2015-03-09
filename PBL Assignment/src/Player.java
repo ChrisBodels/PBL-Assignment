@@ -13,7 +13,14 @@ public class Player {
 	{
 		this.balance = 80;
 		this.loanStatus = false;
+		if(userName.length() >= 3 && userName.length() <=10)
+		{
 		this.userName = userName;
+		}
+		else
+		{
+			System.out.println("Invalid user name. User name must no less than 3 characters and must not have greater than 10 charecters.");
+		}
 		//Add validation for username
 		this.motorStocks = 0;
 		this.shippingStocks = 0;
@@ -23,27 +30,25 @@ public class Player {
 	
 	public void setLoanStatus(boolean loanStatus)
 	{
-		 
-			if (!loanStatus) {
-				this.loanStatus = true;
-			} else {
-				this.loanStatus = false;
-			}
-		 
+		this.loanStatus = loanStatus;
+	}
 	
 	public int getBalance()
 	{
 		return this.balance;
 	}
 	
-	public void setUsername()
+	public void setUsername(String userName)
 	{
-		
+		if(userName.length() >= 3 && userName.length() <=10)
+		{
+		this.userName = userName;
+		}
 	}
 	
-	public void setBalance()
+	public void setBalance(int balance)
 	{
-		
+		this.balance = balance; 
 	}
 	
 	public String getUserName()
