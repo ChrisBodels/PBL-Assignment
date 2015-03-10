@@ -7,16 +7,15 @@ public class Driver
 	
 	
 	public Driver() {
-		
-		
 		bank = new Bank();
-		runMenu();
-
-		
+		input = new Scanner(System.in);
+		runMenu();		
 	}
+	
 	public static void main (String args[])
 	{
 		Driver app = new Driver();
+		
 	}
 	
 	private int mainMenu() {
@@ -29,22 +28,42 @@ public class Driver
 		int option = input.nextInt();
 		return option;
 	}
-	private void runMenu()
-	{
-		int option = mainMenu();
-		while (option != 0)
-			switch(option)
-		{
-			case 1:		
-				addPlayer();
-			break;
-			case 2:		
-				//loadSavedGame();
-			break;
-		}
-		System.out.println("/nPress any key to continue ");
-	}
 
+
+	private void runMenu() {
+		int option = mainMenu();
+		while (option != 0) {
+			// clear the terminal window
+			System.out.println("\f");
+
+			switch (option) {
+			case 1:
+				addPlayer();
+				break;
+			case 2:
+				//
+				break;
+
+			default:
+				System.out.println("Invalid option entered: " + option);
+				break;
+			}
+
+			
+			System.out.println("\nPress any key to continue...");
+			input.nextLine();
+			input.nextLine(); 
+
+			
+			System.out.println("\f");
+			option = mainMenu();
+		}
+		
+		System.out.println("Exiting... bye");
+		System.exit(0);
+
+	}
+	
 	public void addPlayer() {
 		System.out.println("Please enter the amount of players");
 		int playerAmount = input.nextInt();
@@ -62,8 +81,13 @@ public class Driver
 		}
 		
 	}else{
+		
 			System.out.println("Please enter a value between 3 and 6.");
 		}
 		     
 	}
+	
+	
+		
+		
 }
