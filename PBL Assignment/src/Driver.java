@@ -67,14 +67,14 @@ public class Driver
 	public void addPlayer() {
 		System.out.println("Please enter the amount of players");
 		int playerAmount = input.nextInt();
-		int counter = 0;
+		int counter = 1;
   
-	if(playerAmount >3 && playerAmount <6 ){
+	if(playerAmount >=3 && playerAmount <=6 ){
 	
      
 		while (counter < playerAmount)
 		{
-			System.out.println("Please enter the first name");
+			System.out.println("Please enter player number "  +counter+ "'s name");
 			String name = input.next();
 			bank.add(new Player(name));
 			counter ++;
@@ -86,6 +86,7 @@ public class Driver
 		}
 		     
 	}
+	
 	
 	
 		
