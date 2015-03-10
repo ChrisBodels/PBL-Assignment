@@ -9,6 +9,8 @@ public class Bank {
 				 
 	private int motorPool, shippingPool, steelPool, storesPool;
 	
+	private ArrayList<Player> players;
+	
 	public Bank()
 	{
 		cards = new Card[25];
@@ -20,6 +22,19 @@ public class Bank {
 		
 		
 		initialiseCards();
+		
+		players = new ArrayList<Player>();
+	
+	}
+	
+	public ArrayList<Player> getPlayers()
+	{
+		return players;
+	}
+	
+	public void add (Player player)
+	{
+		players.add(player);
 	}
 	
 	public void initialiseCards()
