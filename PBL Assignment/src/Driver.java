@@ -19,8 +19,11 @@ public class Driver
 	}
 	
 	private int mainMenu() {
-		System.out.println("Welcome to The Stocks and Shares Game");
-		System.out.println("-----------------");
+		System.out.println(" ___________________________________________\n" + 
+                "|                                           |\n" + 
+                "|  Welcome to the Shares and Stocks!        |\n" +
+                "|___________________________________________|\n");
+
 		System.out.println("What would you like to do?");
 		System.out.println("  1) Start game");
 		System.out.println("  0) Exit");
@@ -28,6 +31,7 @@ public class Driver
 		int option = input.nextInt();
 		return option;
 	}
+
 
 
 	private void runMenu() {
