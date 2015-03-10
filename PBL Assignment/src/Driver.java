@@ -2,6 +2,17 @@ import java.util.Scanner;
 
 public class Driver 
 {
+	private Scanner input;
+	private Bank bank;
+	
+	
+	public Driver() {
+		
+		
+		bank = new Bank();
+
+		
+	}
 	public static void main (String args[])
 	{
 		Driver app = new Driver();
@@ -37,7 +48,7 @@ public class Driver
 		System.out.println("/nPress any key to continue ");
 	}
 
-public void addPlayer() {
+	public void addPlayer() {
 		System.out.println("Please enter the amount of players");
 		int playerAmount = input.nextInt();
 		int counter = 0;
