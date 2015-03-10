@@ -60,4 +60,24 @@ public class Player {
 	{
 		return this.loanStatus;
 	}
+	
+	public void changeStockAmount(String stockType, int value)
+	{
+		if(stockType == "Motors")
+		{
+			this.motorStocks += value;
+		}
+		else if(stockType == "Shipping")
+		{
+			this.shippingStocks += value;
+		}
+		else if(stockType == "Steel")
+		{
+			this.steelStocks += value;
+		}
+		else if(stockType == "Stores")
+		{
+			this.storesStocks += value;
+		}
+	}
 }
