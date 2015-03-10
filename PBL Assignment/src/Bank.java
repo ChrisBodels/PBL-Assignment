@@ -70,5 +70,15 @@ public class Bank {
 		cards[25] = card25 = new Card("Bear", -4);
 		cards[24] = card24 = new Card("Bull", 4);
 	}
+	
+	public void load() throws Exception
+ 	{
+    		players = HandleXML.read("players.xml");
+    	}
+    
+	 public void save() throws Exception
+    	{
+    		HandleXML.write(players, "players.xml");
+    	}
 
 }
