@@ -21,7 +21,7 @@ public class Player {
 		{
 			this.userName = userName.substring(0, 9);
 		}
-		//Add validation for username
+		
 		this.motorStocks = 0;
 		this.shippingStocks = 0;
 		this.storesStocks = 0;
