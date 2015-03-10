@@ -8,21 +8,19 @@ public class Driver
 	}
 	
 	private int mainMenu() {
-		System.out.println("");
+		System.out.println("Welcome to The Stocks and Shares Game");
 		System.out.println("-----------------");
 		System.out.println("  	");
+		System.out.println("  	");
+		System.out.println(" ");
+		System.out.println("What would you like to do?");
+		System.out.println(" ");
 		System.out.println(" ");
 		System.out.println("  ");
-		System.out.println("  ");
-		System.out.println(" ");
-		System.out.println("-----------------");
-		System.out.println("  ");
-		System.out.println(" ");
-		System.out.println("-----------------");
-		System.out.println("  ");
-		System.out.println("  ");
-		System.out.println("-----------------");
+		System.out.println("Start new game");
+		System.out.println("Load Saved Game");
 		System.out.println("  0) Exit");
+		System.out.print("==>> ");
 		int option = input.nextInt();
 		return option;
 	}
@@ -31,22 +29,12 @@ public class Driver
 		int option = mainMenu();
 		while (option != 0)
 		{
-			case 1:		;
-			break;
-			case 2:		;
-			break;
-			case 3:		;
-			break;
-			case 4:		;
-			break;
-			case 5:		;
-			break;
-			case 6:		;
-			break;
-			case 7:		;
-			break;
+		case 1:		newGame();
+		break;
+		case 2:		loadSavedGame();
+		break;
 		}
-		System.out.println("/nPress any key to continue ")
+		System.out.println("/nPress any key to continue ");
 	}
 
 	public void addPlayer() {
