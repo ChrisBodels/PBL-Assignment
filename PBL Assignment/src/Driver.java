@@ -72,7 +72,7 @@ public class Driver
 	if(playerAmount >=3 && playerAmount <=6 ){
 	
      
-		while (counter < playerAmount)
+		while (counter <= playerAmount)
 		{
 			System.out.println("Please enter player number "  +counter+ "'s name");
 			String name = input.next();
