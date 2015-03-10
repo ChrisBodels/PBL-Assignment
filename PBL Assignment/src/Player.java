@@ -19,7 +19,7 @@ public class Player {
 		}
 		else
 		{
-			System.out.println("Invalid user name. User name must no less than 3 characters and must not have greater than 10 charecters.");
+			this.userName = userName.substring(0, 9);
 		}
 		//Add validation for username
 		this.motorStocks = 0;
