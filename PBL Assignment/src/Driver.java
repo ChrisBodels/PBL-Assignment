@@ -10,6 +10,7 @@ public class Driver
 		
 		
 		bank = new Bank();
+		runMenu();
 
 		
 	}
