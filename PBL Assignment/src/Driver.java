@@ -7,13 +7,25 @@ public class Driver
 		Driver app = new Driver();
 	}
 	
-	private int mainMenu()
-	{ 
-		System.out.println();
-		System.out.println();
-		System.out.println();
+	private int mainMenu() {
+		System.out.println("");
+		System.out.println("-----------------");
+		System.out.println("  	");
+		System.out.println(" ");
+		System.out.println("  ");
+		System.out.println("  ");
+		System.out.println(" ");
+		System.out.println("-----------------");
+		System.out.println("  ");
+		System.out.println(" ");
+		System.out.println("-----------------");
+		System.out.println("  ");
+		System.out.println("  ");
+		System.out.println("-----------------");
+		System.out.println("  0) Exit");
+		int option = input.nextInt();
+		return option;
 	}
-	
 	private void runMenu()
 	{
 		int option = mainMenu();
@@ -35,5 +47,19 @@ public class Driver
 			break;
 		}
 		System.out.println("/nPress any key to continue ")
+	}
+
+	public void addPlayer() {
+		System.out.println("Please enter the amount of players");
+		int playerAmount = input.nextInt();
+		int counter = 0;
+  
+      while (counter < playerAmount && playerAmount >3 && playerAmount <6 );
+     {
+		System.out.println("Please enter the first name");
+		String name = input.next();
+		players.addPlayer(new Player(name));
+		
+     } 
 	}
 }
