@@ -37,17 +37,25 @@ public class Driver
 		System.out.println("/nPress any key to continue ");
 	}
 
-	public void addPlayer() {
+public void addPlayer() {
 		System.out.println("Please enter the amount of players");
 		int playerAmount = input.nextInt();
 		int counter = 0;
   
-      while (counter < playerAmount && playerAmount >3 && playerAmount <6 );
-     {
-		System.out.println("Please enter the first name");
-		String name = input.next();
-		players.addPlayer(new Player(name));
+	if(playerAmount >3 && playerAmount <6 ){
+	
+     
+		while (counter < playerAmount)
+		{
+			System.out.println("Please enter the first name");
+			String name = input.next();
+			bank.add(new Player(name));
+			counter ++;
+		}
 		
-     } 
+	}else{
+			System.out.println("Please enter a value between 3 and 6.");
+		}
+		     
 	}
 }
