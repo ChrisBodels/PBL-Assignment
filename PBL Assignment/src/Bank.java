@@ -112,5 +112,14 @@ public class Bank {
     	{
     		HandleXML.write(players, "players.xml");
     	}
+    	
+    	public String checkCurrentBankStock()
+	{String str = "";
+
+		str += ("The current stock in the bank is"+ "\n" + "Motors = " + motorPool + "\n" +"Steel = " + steelPool +
+		"\n"+ "Shipping = " +shippingPool+ "\n" + "Stores = " + storesPool  );
+
+		return str;
+}  
 
 }
