@@ -1,13 +1,9 @@
 
 public class Player {
 
-	int balance;
-	boolean loanStatus;
-	String userName;
-	int motorStocks;
-	int shippingStocks;
-	int storesStocks;
-	int steelStocks;
+	private int balance, motorStocks, shippingStocks, storesStocks, steelStocks;
+	private boolean loanStatus;
+	private String userName;
 	
 	public Player(String userName)
 	{
@@ -61,23 +57,23 @@ public class Player {
 		return this.loanStatus;
 	}
 	
-	public void changeStockAmount(String stockType, int value)
+	public void setStocks(String stockType, int amount)
 	{
 		if(stockType == "Motors")
 		{
-			this.motorStocks += value;
+			this.motorStocks += amount;
 		}
 		else if(stockType == "Shipping")
 		{
-			this.shippingStocks += value;
+			this.shippingStocks += amount;
 		}
 		else if(stockType == "Steel")
 		{
-			this.steelStocks += value;
+			this.steelStocks += amount;
 		}
-		else if(stockType == "Stores")
+		else if(stockType == "Shipping")
 		{
-			this.storesStocks += value;
+			this.storesStocks += amount;
 		}
 	}
 }
