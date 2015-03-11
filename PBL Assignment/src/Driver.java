@@ -135,36 +135,100 @@ public class Driver
 	}
 	
 	/*
-	 * The method that will be called whenever a player is buying or selling stocks
+	 * The method that will be called whenever a player is buying stocks
 	 * Still not 100% finished or anything but it's a basic version at least
 	 * -Chris
 	 */
-	public void changeStockAmount(String stockType, int value, Player currentPlayer)
+	public void buyStock(String stockType, int amount, Player currentPlayer)
 	{
 		if(stockType == "Motors")
 		{
-			currentPlayer.setStocks("Motors", value);
-			currentPlayer.setBalance(bank.getStockPrice("Motors"));
+			currentPlayer.setStocksUp("Motors", amount);
+			int counter = 0;
+			while(counter < amount)
+			{
+				currentPlayer.setBalanceDown(bank.getStockPrice("Motors"));
+				counter ++;
+			}
 		}
 		else if(stockType == "Shipping")
 		{
-			currentPlayer.setStocks("Shipping", value);
-			currentPlayer.setBalance(bank.getStockPrice("Shipping"));
+			currentPlayer.setStocksUp("Shipping", amount);
+			int counter = 0;
+			while(counter < amount)
+			{
+				currentPlayer.setBalanceDown(bank.getStockPrice("Shipping"));
+				counter ++;
+			}
 		}
 		else if(stockType == "Steel")
 		{
-			currentPlayer.setStocks("Steel", value);
-			currentPlayer.setBalance(bank.getStockPrice("Steel"));
+			currentPlayer.setStocksUp("Steel", amount);
+			int counter = 0;
+			while(counter < amount)
+			{
+				currentPlayer.setBalanceDown(bank.getStockPrice("Steel"));
+				counter ++;
+			}
 		}
 		else if(stockType == "Stores")
 		{
-			currentPlayer.setStocks("Stores", value);
-			currentPlayer.setBalance(bank.getStockPrice("Stores"));
+			currentPlayer.setStocksUp("Stores", amount);
+			int counter = 0;
+			while(counter < amount)
+			{
+				currentPlayer.setBalanceDown(bank.getStockPrice("Stores"));
+				counter ++;
+			}
 		}
 	}
 	
-	
-	
-		
-		
+	/*
+	 * The method that will be called whenever a player is selling stocks
+	 * Still not 100% finished or anything but it's a basic version at least
+	 * -Chris
+	 */
+	public void sellStock(String stockType, int amount, Player currentPlayer)
+	{
+		if(stockType == "Motors")
+		{
+			currentPlayer.setStocksDown("Motors", amount);
+			int counter = 0;
+			while(counter < amount)
+			{
+				currentPlayer.setBalanceUp(bank.getStockPrice("Motors"));
+				counter ++;
+			}
+		}
+		else if(stockType == "Shipping")
+		{
+			currentPlayer.setStocksDown("Shipping", amount);
+			int counter = 0;
+			while(counter < amount)
+			{
+				currentPlayer.setBalanceUp(bank.getStockPrice("Shipping"));
+				counter ++;
+			}
+		}
+		else if(stockType == "Steel")
+		{
+			currentPlayer.setStocksDown("Steel", amount);
+			int counter = 0;
+			while(counter < amount)
+			{
+				currentPlayer.setBalanceUp(bank.getStockPrice("Steel"));
+				counter ++;
+			}
+		}
+		else if(stockType == "Stores")
+		{
+			currentPlayer.setStocksDown("Stores", amount);
+			int counter = 0;
+			while(counter < amount)
+			{
+				currentPlayer.setBalanceUp(bank.getStockPrice("Stores"));
+				counter ++;
+			}
+		}
+	}
 }
