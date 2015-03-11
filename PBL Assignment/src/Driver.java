@@ -137,12 +137,15 @@ public class Driver
 	/*
 	 * The method that will be called whenever a player is buying stocks
 	 * Still not 100% finished or anything but it's a basic version at least
+	 * Need to add a way to remove stocks from the bank still
+	 * No validation yet either
 	 * -Chris
 	 */
 	public void buyStock(String stockType, int amount, Player currentPlayer)
 	{
 		if(stockType == "Motors")
 		{
+			bank.takeStockFromPool("Motors", amount);
 			currentPlayer.setStocksUp("Motors", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -153,6 +156,7 @@ public class Driver
 		}
 		else if(stockType == "Shipping")
 		{
+			bank.takeStockFromPool("Shipping", amount);
 			currentPlayer.setStocksUp("Shipping", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -163,6 +167,7 @@ public class Driver
 		}
 		else if(stockType == "Steel")
 		{
+			bank.takeStockFromPool("Steel", amount);
 			currentPlayer.setStocksUp("Steel", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -173,6 +178,7 @@ public class Driver
 		}
 		else if(stockType == "Stores")
 		{
+			bank.takeStockFromPool("Stores", amount);
 			currentPlayer.setStocksUp("Stores", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -186,12 +192,15 @@ public class Driver
 	/*
 	 * The method that will be called whenever a player is selling stocks
 	 * Still not 100% finished or anything but it's a basic version at least
+	 * Need to add a way to add stocks back to the bank still
+	 * No validation yet either 
 	 * -Chris
 	 */
 	public void sellStock(String stockType, int amount, Player currentPlayer)
 	{
 		if(stockType == "Motors")
 		{
+			bank.addStockToPool("Motors", amount);
 			currentPlayer.setStocksDown("Motors", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -202,6 +211,7 @@ public class Driver
 		}
 		else if(stockType == "Shipping")
 		{
+			bank.addStockToPool("Shipping", amount);
 			currentPlayer.setStocksDown("Shipping", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -212,6 +222,7 @@ public class Driver
 		}
 		else if(stockType == "Steel")
 		{
+			bank.addStockToPool("Steel", amount);
 			currentPlayer.setStocksDown("Steel", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -222,6 +233,7 @@ public class Driver
 		}
 		else if(stockType == "Stores")
 		{
+			bank.addStockToPool("Stores", amount);
 			currentPlayer.setStocksDown("Stores", amount);
 			int counter = 0;
 			while(counter < amount)
