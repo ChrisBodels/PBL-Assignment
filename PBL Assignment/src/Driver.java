@@ -143,23 +143,23 @@ public class Driver
 	{
 		if(stockType == "Motors")
 		{
-			currentPlayer.motorStocks += value;
-			currentPlayer.balance += bank.getStockPrice("Motors");
+			currentPlayer.setStocks("Motors", value);
+			currentPlayer.setBalance(bank.getStockPrice("Motors"));
 		}
 		else if(stockType == "Shipping")
 		{
-			currentPlayer.shippingStocks += value;
-			currentPlayer.balance += bank.getStockPrice("Shiping");
+			currentPlayer.setStocks("Shipping", value);
+			currentPlayer.setBalance(bank.getStockPrice("Shipping"));
 		}
 		else if(stockType == "Steel")
 		{
-			currentPlayer.steelStocks += value;
-			currentPlayer.balance += bank.getStockPrice("Steel");
+			currentPlayer.setStocks("Steel", value);
+			currentPlayer.setBalance(bank.getStockPrice("Steel"));
 		}
 		else if(stockType == "Stores")
 		{
-			currentPlayer.storesStocks += value;
-			currentPlayer.balance += bank.getStockPrice("Stores");
+			currentPlayer.setStocks("Stores", value);
+			currentPlayer.setBalance(bank.getStockPrice("Stores"));
 		}
 	}
 	
