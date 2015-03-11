@@ -101,4 +101,26 @@ public class Player {
 			this.storesStocks -= amount;
 		}
 	}
+	
+	public int getStocks(String stockType)
+	{
+		int amount = 0;
+		if(stockType.equals("Motor"))
+		{
+			return motorStocks +=amount;
+		}
+		else if(stockType.equals("Shipping"))
+		{
+			return shippingStocks =+ amount;
+		}
+		else if(stockType.equals("Steel"))
+		{
+			return steelStocks =+amount;
+		}
+		else if(stockType.equals("Shipping"))
+		{
+			return shippingStocks =+amount;
+		} 
+		return amount;
+	}
 }
