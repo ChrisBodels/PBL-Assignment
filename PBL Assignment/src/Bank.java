@@ -121,5 +121,12 @@ public class Bank {
 
 		return str;
 }  
-
+	public String updatedStockValue(){
+    		String Str = "";
+    		
+    		Str += ("The current value of stocks"+ "\n" + "Moters = " + motors.getStockValue() + "\n" +"Steel +" +steel.getStockValue() +
+    		"\n"+ "Shipping = " +shipping.getStockValue() + "\n" + "Stores = " + stores.getStockValue());
+    		
+    		return Str;
+    	}
 }
