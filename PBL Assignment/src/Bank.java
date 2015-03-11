@@ -7,6 +7,8 @@ public class Bank {
 				 card11, card12, card13, card14, card15, card16, card17, card18, card19, card20,
 				 card21, card22, card23, card24, card25;
 				 
+	private Stock motors, shipping, steel, stores;
+				 
 	private int motorPool, shippingPool, steelPool, storesPool;
 	
 	private ArrayList<Player> players;
@@ -14,6 +16,11 @@ public class Bank {
 	public Bank()
 	{
 		cards = new Card[25];
+		
+		motors = new Stock("Motors");
+		shipping = new Stock("Shipping");
+		steel = new Stock("Steel");
+		stores = new Stock("Stores");
 		
 		motorPool = 28;
 		shippingPool = 28;
@@ -69,6 +76,31 @@ public class Bank {
 		
 		cards[25] = card25 = new Card("Bear", -4);
 		cards[24] = card24 = new Card("Bull", 4);
+	}
+	
+	public int getStockPrice(String stockType)
+	{
+		if(stockType == "Motors")
+		{
+			return motors.getStockValue();
+		}
+		else if(stockType == "Shipping")
+		{
+			return shipping.getStockValue();
+		}
+		else if(stockType == "Steel")
+		{
+			return steel.getStockValue();
+		}
+		else if(stockType == "Stores")
+		{
+			return stores.getStockValue();
+		}
+		//Not sure about this part, just did it to get it working.
+		else
+		{
+			return -1;
+		}
 	}
 	
 	public void load() throws Exception
