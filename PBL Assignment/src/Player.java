@@ -42,9 +42,14 @@ public class Player {
 		}
 	}
 	
-	public void setBalance(int balance)
+	public void setBalanceUp(int balance)
 	{
-		this.balance = balance; 
+		this.balance += balance; 
+	}
+	
+	public void setBalanceDown(int balance)
+	{
+		this.balance -= balance; 
 	}
 	
 	public String getUserName()
@@ -57,7 +62,7 @@ public class Player {
 		return this.loanStatus;
 	}
 	
-	public void setStocks(String stockType, int amount)
+	public void setStocksUp(String stockType, int amount)
 	{
 		if(stockType == "Motors")
 		{
@@ -74,6 +79,26 @@ public class Player {
 		else if(stockType == "Shipping")
 		{
 			this.storesStocks += amount;
+		}
+	}
+	
+	public void setStocksDown(String stockType, int amount)
+	{
+		if(stockType == "Motors")
+		{
+			this.motorStocks -= amount;
+		}
+		else if(stockType == "Shipping")
+		{
+			this.shippingStocks -= amount;
+		}
+		else if(stockType == "Steel")
+		{
+			this.steelStocks -= amount;
+		}
+		else if(stockType == "Shipping")
+		{
+			this.storesStocks -= amount;
 		}
 	}
 }
