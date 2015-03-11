@@ -34,6 +34,46 @@ public class Bank {
 	
 	}
 	
+	public void addStockToPool(String stockType, int value)
+	{
+		if(stockType == "Motors")
+		{
+			this.motorPool += value;
+		}
+		else if(stockType == "Shipping")
+		{
+			this.shippingPool += value;
+		}
+		else if(stockType == "Steel")
+		{
+			this.steelPool += value;
+		}
+		else if(stockType == "Stores")
+		{
+			this.storesPool += value;
+		}
+	}
+	
+	public void takeStockFromPool(String stockType, int value)
+	{
+		if(stockType == "Motors")
+		{
+			this.motorPool -= value;
+		}
+		else if(stockType == "Shipping")
+		{
+			this.shippingPool -= value;
+		}
+		else if(stockType == "Steel")
+		{
+			this.steelPool -= value;
+		}
+		else if(stockType == "Stores")
+		{
+			this.storesPool -= value;
+		}
+	}
+	
 	public ArrayList<Player> getPlayers()
 	{
 		return players;
