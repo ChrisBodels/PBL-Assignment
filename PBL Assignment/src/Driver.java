@@ -72,9 +72,10 @@ public class Driver
 	
 	private int roundMenu()
 	{
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
+		System.out.println("  1) Buy shares");
+		System.out.println("  2) Sell shares");
+		System.out.println("  3) ");
+		System.out.println("  0) End turn");
 		int option = input.nextInt();
 		return option;
 	}
@@ -86,9 +87,10 @@ public class Driver
 	*/
 	public void mainRound()
 	{
-		int roundNumber = 0;
-		while(roundNumber < 12)
+		int roundNumber = 1;
+		while(roundNumber < 13)
 		{
+			System.out.println("Now beginning round number " + roundNumber);
 			players = bank.getPlayers();
 			for(Player currentPlayer : players)
 			{
@@ -99,39 +101,214 @@ public class Driver
 					switch(option)
 					{
 						case 1:
-							
+							chooseStock("buy", currentPlayer);
 						break;
 						case 2:
+							chooseStock("sell", currentPlayer);
 						break;
 					
 					}
 				}
 			}
-			roundNumber += 1;
+			roundNumber ++;
 		}
 	}
-	
-	public void addPlayer() {
+
+	public void addPlayer() 
+	{
 		System.out.println("Please enter the amount of players");
 		int playerAmount = input.nextInt();
 		int counter = 1;
   
-	if(playerAmount >=3 && playerAmount <=6 ){
-	
-     
-		while (counter <= playerAmount)
-		{
-			System.out.println("Please enter player number "  +counter+ "'s name");
-			String name = input.next();
-			bank.add(new Player(name));
-			counter ++;
+		if(playerAmount >=3 && playerAmount <=6 )
+		{ 
+			while (counter <= playerAmount)
+			{
+				System.out.println("Please enter player number "  +counter+ "'s name");
+				String name = input.next();
+				bank.add(new Player(name));
+				counter ++;
+			}	
 		}
-		
-	}else{
-		
+		else
+		{	
 			System.out.println("Please enter a value between 3 and 6.");
+		}	  
+		mainRound();
+	}
+	
+	private int chooseStockMenu(String buyOrSell)
+	{
+		System.out.println("What type of stock would you like to " + buyOrSell + "?");
+		System.out.println("  1) Motors");
+		System.out.println("  2) Shipping");
+		System.out.println("  3) Steel");
+		System.out.println("  4) Stores");
+		System.out.println("  0) Cancel");
+		int option = input.nextInt();
+		return option;
+	}
+	
+	/*
+	 * Think we're going to need a lot of validation for this stuff like checking whether or not the player/bank has
+	 * the appropriate stocks/funds to carry out the action.
+	 * -Chris
+	 */
+	public void chooseStock(String buyOrSell, Player currentPlayer)
+	{
+		if(buyOrSell == "buy")
+		{
+			int option = chooseStockMenu(buyOrSell);
+			String stockType = "";
+			while(option < 0 && option >= 5 )
+			{
+				System.out.println("Invalid option entered. Please enter a valid option between 0 and 4");
+				option = chooseStockMenu(buyOrSell);
+			}
+			if(option != 0)
+			{
+				switch(option)
+				{
+					case 1: 
+						stockType = "Motors";
+					break;
+					case 2:
+						stockType = "Shipping";
+					break;
+					case 3:
+						stockType = "Steel";
+					break;
+					case 4:
+						stockType = "Stores";
+					break;
+				}
+				chooseAmount(stockType, buyOrSell, currentPlayer);
+			}
 		}
-		     
+		else if(buyOrSell == "sell")
+		{
+			int option = chooseStockMenu(buyOrSell);
+			String stockType = "";
+			while(option < 0 && option >= 5 )
+			{
+				System.out.println("Invalid option entered. Please enter a valid option between 0 and 4");
+				option = chooseStockMenu(buyOrSell);
+			}
+			if(option != 0)
+			{
+				switch(option)
+				{
+					case 1: 
+						stockType = "Motors";
+					break;
+					case 2:
+						stockType = "Shipping";
+					break;
+					case 3:
+						stockType = "Steel";
+					break;
+					case 4:
+						stockType = "Stores";
+					break;
+				}
+				chooseAmount(stockType, buyOrSell, currentPlayer);
+			}
+		}
+		
+	}
+	
+	private int chooseAmountMenu(String buyOrSell)
+	{
+		//May want to add a 0 option here to allow the user to back out, we'll see.
+		System.out.println("How many stocks would you like to " + buyOrSell + "?");
+		System.out.println("  1) One stock");
+		System.out.println("  2) Two stocks");
+		System.out.println("  3) Three stocks");
+		System.out.println("  4) Four stocks");
+		System.out.println("  5) Five stocks");
+		System.out.println("  6) Ten stocks");
+		System.out.println("  7) Fifteen stocks");
+		System.out.println("  8) Twenty stocks");
+		System.out.println("  9) Twenty-Five stocks");
+		int option = input.nextInt();
+		return option;
+		
+	}
+	
+	public void chooseAmount(String stockType, String buyOrSell, Player currentPlayer)
+	{
+		int option = chooseAmountMenu(buyOrSell);
+		while(option < 1 && option > 9)
+		{
+			System.out.println("Invalid option entered. Please enter a valid option between 1 and 9");
+			option = chooseAmountMenu(buyOrSell);
+		}
+		if(buyOrSell == "buy")
+		{
+			switch(option)
+			{
+				case 1:
+					buyStock(stockType, 1, currentPlayer);
+				break;
+				case 2:
+					buyStock(stockType, 2, currentPlayer);
+				break;
+				case 3:
+					buyStock(stockType, 3, currentPlayer);
+				break;
+				case 4:
+					buyStock(stockType, 4, currentPlayer);
+				break;
+				case 5:
+					buyStock(stockType, 5, currentPlayer);
+				break;
+				case 6:
+					buyStock(stockType, 10, currentPlayer);
+				break;
+				case 7:
+					buyStock(stockType, 15, currentPlayer);
+				break;
+				case 8:
+					buyStock(stockType, 20, currentPlayer);	
+				break;
+				case 9:
+					buyStock(stockType, 25, currentPlayer);
+				break;
+			}
+		}
+		else if(buyOrSell == "sell")
+		{
+			switch(option)
+			{
+				case 1:
+					sellStock(stockType, 1, currentPlayer);
+				break;
+				case 2:
+					sellStock(stockType, 2, currentPlayer);
+				break;
+				case 3:
+					sellStock(stockType, 3, currentPlayer);
+				break;
+				case 4:
+					sellStock(stockType, 4, currentPlayer);
+				break;
+				case 5:
+					sellStock(stockType, 5, currentPlayer);
+				break;
+				case 6:
+					sellStock(stockType, 10, currentPlayer);
+				break;
+				case 7:
+					sellStock(stockType, 15, currentPlayer);
+				break;
+				case 8:
+					sellStock(stockType, 20, currentPlayer);	
+				break;
+				case 9:
+					sellStock(stockType, 25, currentPlayer);
+				break;
+			}
+		}
 	}
 	
 	/*
