@@ -13,6 +13,11 @@ public class Card {
 	
 	public String toString()
 	{
-		return "";
+		return (" __________________\n"+
+	            "|     "+stockType+"     |\n" +
+	            "|                  | \n"+
+	            "|        " +value+"        | \n"+
+	            "|                  | \n"+
+	            "|__________________| \n");
 	}
 }
