@@ -108,18 +108,14 @@ public class Driver
 							chooseStock("sell", currentPlayer);
 						break;
 						case 3://This is currently printing out on card per user.*Dave
-
 						System.out.println(cardDraw(counter));
-
 						System.out.println("\nPress any key to continue..");
 						counter++;
 					}
 					input.nextLine();
 					input.nextLine();
-
 					System.out.println("\f");
 					option = roundMenu();
-
 					break;
 					
 					}
