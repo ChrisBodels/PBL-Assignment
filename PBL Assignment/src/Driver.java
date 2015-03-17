@@ -106,6 +106,20 @@ public class Driver
 						case 2:
 							chooseStock("sell", currentPlayer);
 						break;
+						case 3:
+
+						System.out.println(cardDraw(counter));
+
+						System.out.println("\nPress any key to continue..");
+						counter++;
+					}
+					input.nextLine();
+					input.nextLine();
+
+					System.out.println("\f");
+					option = roundMenu();
+
+					break;
 					
 					}
 				}
@@ -419,5 +433,17 @@ public class Driver
 				counter ++;
 			}
 		}
+	}
+
+     private String cardDraw(int amount) {
+
+		int amountPlayers = bank.getPlayers().size();
+
+		String str = "";
+		if (amount <= amountPlayers) {
+			str += bank.generateCard();
+		}
+		return str;
+
 	}
 }
