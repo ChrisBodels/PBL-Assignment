@@ -95,6 +95,7 @@ public class Driver
 			for(Player currentPlayer : players)
 			{
 				int option = roundMenu();
+				int counter = 1;//counter for case 3*Dave
 				
 				while(option != 0)
 				{
@@ -106,7 +107,7 @@ public class Driver
 						case 2:
 							chooseStock("sell", currentPlayer);
 						break;
-						case 3:
+						case 3://This is currently printing out on card per user.*Dave
 
 						System.out.println(cardDraw(counter));
 
@@ -434,7 +435,11 @@ public class Driver
 			}
 		}
 	}
-
+ 	/*
+	 * The method draws a card using the method in the bank class, still have not be able to 
+	 * remove previous cards working on it.
+	 * -Dave
+	 */
      private String cardDraw(int amount) {
 
 		int amountPlayers = bank.getPlayers().size();
