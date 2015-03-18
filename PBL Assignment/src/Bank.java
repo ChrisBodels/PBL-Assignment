@@ -244,10 +244,17 @@ public class Bank {
     		return Str;
     	}
     	
-    	public String generateCard()
-	{
-	  int index = randomGenerator.nextInt(cards.size());
-	   return cards.get(index).toString();
+    	public int generateCardIndex(Player currentPlayer) {
+		int num;
+		int index = randomGenerator.nextInt(cards.size());
+		num = index;
+		currentPlayer.setCard(num);
+		return index;
+	}
+	
+	public String generateCard(Player currentPlayer) {
+
+		return cards.get(currentPlayer.getCard()).toString();
 	}
 
 }
