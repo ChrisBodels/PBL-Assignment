@@ -29,11 +29,10 @@ public class Bank {
 		steelPool = 28;
 		storesPool = 28;
 		
-		
-		initialiseCards();
-		
 		players = new ArrayList<Player>();
 		cards =  new ArrayList<Card>();
+		
+		initialiseCards();
 	
 	}
 	
@@ -170,6 +169,51 @@ public class Bank {
 		else
 		{
 			return -1;
+		}
+	}
+	
+	public int getStockAmount(String stockType)
+	{
+		if(stockType == "Motors")
+		{
+			return motors.getStockAmount();
+		}
+		else if(stockType == "Shipping")
+		{
+			return shipping.getStockAmount();
+		}
+		else if(stockType == "Steel")
+		{
+			return steel.getStockAmount();
+		}
+		else if(stockType == "Stores")
+		{
+			return stores.getStockAmount();
+		}
+		//Not sure about this part, just did it to get it working.
+		else
+		{
+			return -1;
+		}
+	}
+	
+	public void setStockAmount(String stockType, int amount)
+	{
+		if(stockType == "Motors")
+		{
+			motors.setStockAmount(amount);
+		}
+		else if(stockType == "Shipping")
+		{
+			shipping.setStockAmount(amount);
+		}
+		else if(stockType == "Steel")
+		{
+			steel.setStockAmount(amount);
+		}
+		else if(stockType == "Stores")
+		{
+			stores.setStockAmount(amount);
 		}
 	}
 	
