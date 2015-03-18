@@ -272,5 +272,15 @@ public class Bank {
 
 		return cards.get(currentPlayer.getCard()).toString();
 	}
+	
+	/*
+	 * New method to reset the remove cards array
+	 * 
+	 */
+	public void resetArray(){
+		
+		this.removeCards = cards; 
+	}
+	
 
 }
