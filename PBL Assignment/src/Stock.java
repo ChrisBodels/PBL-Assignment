@@ -21,7 +21,7 @@ public class Stock {
 	{
 		if(stockAmount >= 0 && stockAmount <= 28)
 		{
-			this.stockAmount = stockAmount;
+			this.stockAmount += stockAmount;
 		}
 	}
 	
