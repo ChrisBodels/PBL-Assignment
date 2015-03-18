@@ -12,6 +12,7 @@ public class Bank {
 	private ArrayList<Player> players;
 	private ArrayList<Card> cards;
 	Random randomGenerator = new Random();
+	private ArrayList<Card> removeCards;//new
 	
 	
 	public Bank()
@@ -24,6 +25,7 @@ public class Bank {
 		
 		players = new ArrayList<Player>();
 		cards =  new ArrayList<Card>();
+		removeCards = new ArrayList<Card>();//new
 		
 		initialiseCards();
 	
@@ -208,6 +210,13 @@ public class Bank {
 		num = index;
 		currentPlayer.setCard(num);
 		return index;
+	}
+	/*
+	NEW METHOD
+	*/
+	public void removeCard(Player player)
+	{
+		removeCards.remove(player.getCard());
 	}
 	
 	public String generateCard(Player currentPlayer) {
