@@ -101,6 +101,7 @@ public class Driver
 				int counter = 1;//counter for case 3*Dave
 				System.out.println( currentPlayer.getUserName() + "'s turn");
 				int option = -1;
+				bank.generateCardIndex(currentPlayer);//gives each player an index
 				
 				while(option != 0)
 				{
@@ -139,7 +140,7 @@ public class Driver
 							input.nextLine();
 						break;
 						case 5://This is currently printing out on card per user.*Dave
-						System.out.println(cardDraw(counter));
+						System.out.println(bank.generateCard(currentPlayer));
 						System.out.println("\nPress any key to continue..");
 						counter++;
 					}
