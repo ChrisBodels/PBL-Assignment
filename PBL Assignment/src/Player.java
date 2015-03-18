@@ -1,9 +1,10 @@
 
 public class Player {
 
-	private int balance, motorStocks, shippingStocks, storesStocks, steelStocks, card;
+	private int balance, card;
 	private boolean loanStatus;
 	private String userName;
+	private Stock playerMotors, playerShipping, playerSteel, playerStores;
 	
 	public Player(String userName)
 	{
@@ -18,17 +19,25 @@ public class Player {
 			this.userName = userName.substring(0, 9);
 		}
 		
-		this.motorStocks = 0;
-		this.shippingStocks = 0;
-		this.storesStocks = 0;
-		this.steelStocks = 0;
 		this.card = 0;//this really stores the index number for the card
+		
+		playerMotors = new Stock("Motors");
+		playerShipping = new Stock("Shipping");
+		playerSteel = new Stock("Steel");
+		playerStores = new Stock("Stores");
+		
+		playerMotors.setStockAmount(-28);
+		playerShipping.setStockAmount(-28);
+		playerSteel.setStockAmount(-28);
+		playerStores.setStockAmount(-28);
 	}
-	public void setCard(int card) {//sets the card to that of the index number
+	public void setCard(int card) //sets the card to that of the index number
+	{
 		this.card = card;
 	}
-
-	public int getCard() {//returns the int of the index number
+			
+	public int getCard() //returns the int of the index number
+	{
 		return this.card;
 	}
 	
@@ -74,19 +83,19 @@ public class Player {
 	{
 		if(stockType == "Motors")
 		{
-			this.motorStocks += amount;
+			playerMotors.setStockAmount(amount);
 		}
 		else if(stockType == "Shipping")
 		{
-			this.shippingStocks += amount;
+			playerShipping.setStockAmount(amount);
 		}
 		else if(stockType == "Steel")
 		{
-			this.steelStocks += amount;
+			playerSteel.setStockAmount(amount);
 		}
 		else if(stockType == "Shipping")
 		{
-			this.storesStocks += amount;
+			playerStores.setStockAmount(amount);
 		}
 	}
 	
@@ -94,41 +103,43 @@ public class Player {
 	{
 		if(stockType == "Motors")
 		{
-			this.motorStocks -= amount;
+			playerMotors.setStockAmount(-amount);
 		}
 		else if(stockType == "Shipping")
 		{
-			this.shippingStocks -= amount;
+			playerShipping.setStockAmount(-amount);
 		}
 		else if(stockType == "Steel")
 		{
-			this.steelStocks -= amount;
+			playerSteel.setStockAmount(-amount);
 		}
-		else if(stockType == "Shipping")
+		else if(stockType == "Stores")
 		{
-			this.storesStocks -= amount;
+			playerStores.setStockAmount(-amount);
 		}
 	}
 	
 	public int getStocks(String stockType)
 	{
-		int amount = 0;
-		if(stockType.equals("Motor"))
+		if(stockType == "Motors")
 		{
-			return motorStocks +=amount;
+			return playerMotors.getStockAmount();
 		}
-		else if(stockType.equals("Shipping"))
+		else if(stockType == "Shipping")
 		{
-			return shippingStocks =+ amount;
+			return playerShipping.getStockAmount();
 		}
-		else if(stockType.equals("Steel"))
+		else if(stockType == "Steel")
 		{
-			return steelStocks =+amount;
+			return playerSteel.getStockAmount();
 		}
-		else if(stockType.equals("Shipping"))
+		else if(stockType == "Stores")
 		{
-			return shippingStocks =+amount;
+			return playerStores.getStockAmount();
 		} 
-		return amount;
+		else
+		{
+			return -1;
+		}
 	}
 }
