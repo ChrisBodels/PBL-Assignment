@@ -22,13 +22,13 @@ public class Player {
 		this.shippingStocks = 0;
 		this.storesStocks = 0;
 		this.steelStocks = 0;
-		this.card = 0;
+		this.card = 0;//this really stores the index number for the card
 	}
-	public void setCard(int card) {
+	public void setCard(int card) {//sets the card to that of the index number
 		this.card = card;
 	}
 
-	public int getCard() {
+	public int getCard() {//returns the int of the index number
 		return this.card;
 	}
 	
