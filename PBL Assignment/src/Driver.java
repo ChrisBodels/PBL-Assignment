@@ -103,6 +103,12 @@ public class Driver
 			for(Player currentPlayer : players)
 			{
 				System.out.println( currentPlayer.getUserName() + "'s turn");
+				
+				if(currentPlayer.getLoanStatus())//also need validation in here 
+				{
+					currentPlayer.setBalanceDown(20);
+				}
+				
 				int option = -1;
 				bank.generateCardIndex(currentPlayer);//gives each player an index
 				
@@ -143,9 +149,20 @@ public class Driver
 							input.nextLine();
 						break;
 						case 5://This is currently printing out on card per user.*Dave
-						System.out.println(bank.generateCard(currentPlayer));
-						System.out.println("\nPress any key to continue..");
-						counter++;
+							System.out.println(bank.generateCard(currentPlayer));
+							System.out.println("\nPress any key to continue..");
+							input.nextLine();
+							input.nextLine();
+						break;
+						case 6:
+							currentPlayer.setLoanStatus(true);
+							currentPlayer.setBalanceUp(80);
+						break;
+						case 7:
+							//Needs validation like a motherfucker
+							currentPlayer.setBalanceDown(100);
+							currentPlayer.setLoanStatus(false);
+						break;
 					}
 				}
 			}
