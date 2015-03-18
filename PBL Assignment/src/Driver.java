@@ -74,7 +74,11 @@ public class Driver
 	{
 		System.out.println("  1) Buy shares");
 		System.out.println("  2) Sell shares");
-		System.out.println("  3) ");
+		System.out.println("  3) Check your current balance and stocks");
+		System.out.println("  4) Check stock prices and available stocks");
+		System.out.println("  5) Check your card for this round");
+		System.out.println("  6) Take loan");
+		System.out.println("  7) Repay loan (if currently on loan)");
 		System.out.println("  0) End turn");
 		int option = input.nextInt();
 		return option;
@@ -94,11 +98,15 @@ public class Driver
 			players = bank.getPlayers();
 			for(Player currentPlayer : players)
 			{
-				int option = roundMenu();
 				int counter = 1;//counter for case 3*Dave
+				System.out.println( currentPlayer.getUserName() + "'s turn");
+				int option = -1;
 				
 				while(option != 0)
 				{
+					System.out.println("\f");
+					option = roundMenu();
+					
 					switch(option)
 					{
 						case 1:
@@ -107,17 +115,33 @@ public class Driver
 						case 2:
 							chooseStock("sell", currentPlayer);
 						break;
-						case 3://This is currently printing out on card per user.*Dave
+						case 3:
+							System.out.println("\nYour current balance is £" + currentPlayer.getBalance());
+							System.out.println("\nYour current Motors stock: " + currentPlayer.getStocks("Motors"));
+							System.out.println("Your current Shipping stock: " + currentPlayer.getStocks("Shipping"));
+							System.out.println("Your current Steel stock: " + currentPlayer.getStocks("Steel"));
+							System.out.println("Your current Stores stock: " + currentPlayer.getStocks("Stores"));
+							System.out.println("\nPress any key to continue...");
+							input.nextLine();
+							input.nextLine();
+						break;
+						case 4:
+							System.out.println("\nMotors current stock price: £" + bank.getStockPrice("Motors"));
+							System.out.println("Shipping current stock price: £" + bank.getStockPrice("Shipping"));
+							System.out.println("Steel current stock price: £" + bank.getStockPrice("Steel"));
+							System.out.println("Stores current stock price: £" + bank.getStockPrice("Stores"));
+							System.out.println("\nMotors current stock amount: " + bank.getStockAmount("Motors"));
+							System.out.println("Shipping current stock amount: " + bank.getStockAmount("Shipping"));
+							System.out.println("Steel current stock amount: " + bank.getStockAmount("Steel"));
+							System.out.println("Stores current stock amount: " + bank.getStockAmount("Stores"));
+							System.out.println("\nPress any key to continue...");
+							input.nextLine();
+							input.nextLine();
+						break;
+						case 5://This is currently printing out on card per user.*Dave
 						System.out.println(cardDraw(counter));
 						System.out.println("\nPress any key to continue..");
 						counter++;
-					}
-					input.nextLine();
-					input.nextLine();
-					System.out.println("\f");
-					option = roundMenu();
-					break;
-					
 					}
 				}
 			}
@@ -333,7 +357,7 @@ public class Driver
 	{
 		if(stockType == "Motors")
 		{
-			bank.takeStockFromPool("Motors", amount);
+			bank.setStockAmount("Motors", -amount);
 			currentPlayer.setStocksUp("Motors", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -344,7 +368,7 @@ public class Driver
 		}
 		else if(stockType == "Shipping")
 		{
-			bank.takeStockFromPool("Shipping", amount);
+			bank.setStockAmount("Shipping", -amount);
 			currentPlayer.setStocksUp("Shipping", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -355,7 +379,7 @@ public class Driver
 		}
 		else if(stockType == "Steel")
 		{
-			bank.takeStockFromPool("Steel", amount);
+			bank.setStockAmount("Steel", -amount);
 			currentPlayer.setStocksUp("Steel", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -366,7 +390,7 @@ public class Driver
 		}
 		else if(stockType == "Stores")
 		{
-			bank.takeStockFromPool("Stores", amount);
+			bank.setStockAmount("Stores", -amount);
 			currentPlayer.setStocksUp("Stores", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -388,7 +412,7 @@ public class Driver
 	{
 		if(stockType == "Motors")
 		{
-			bank.addStockToPool("Motors", amount);
+			bank.setStockAmount("Motors", amount);
 			currentPlayer.setStocksDown("Motors", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -399,7 +423,7 @@ public class Driver
 		}
 		else if(stockType == "Shipping")
 		{
-			bank.addStockToPool("Shipping", amount);
+			bank.setStockAmount("Shipping", amount);
 			currentPlayer.setStocksDown("Shipping", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -410,7 +434,7 @@ public class Driver
 		}
 		else if(stockType == "Steel")
 		{
-			bank.addStockToPool("Steel", amount);
+			bank.setStockAmount("Steel", amount);
 			currentPlayer.setStocksDown("Steel", amount);
 			int counter = 0;
 			while(counter < amount)
@@ -421,7 +445,7 @@ public class Driver
 		}
 		else if(stockType == "Stores")
 		{
-			bank.addStockToPool("Stores", amount);
+			bank.setStockAmount("Stores", amount);
 			currentPlayer.setStocksDown("Stores", amount);
 			int counter = 0;
 			while(counter < amount)
