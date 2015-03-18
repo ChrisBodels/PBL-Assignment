@@ -41,7 +41,7 @@ public class Bank {
 		players.add(player);
 	}
 	
-	public void initialiseCards()
+	public void initialiseCards()//changed
 	{
 		{
 		card0 = new Card("Motors  ", -4);
@@ -72,9 +72,9 @@ public class Bank {
 		cards.add(card6);
 		removeCards.add(card6);
 		
-	    card7 = new Card("Shipping", -3);
-	    cards.add(card7);
-	    removeCards.add(card7);
+	        card7 = new Card("Shipping", -3);
+	        cards.add(card7);
+	        removeCards.add(card7);
 	    
 		card8 = new Card("Shipping", -2);
 		cards.add(card8);
