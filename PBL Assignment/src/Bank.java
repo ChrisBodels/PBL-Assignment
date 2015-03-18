@@ -245,12 +245,12 @@ public class Bank {
 		return str;
 }  */
 	public String updatedStockValue(){
-    		String Str = "";
+    		String str = "";
     		
-    		Str += ("The current value of stocks"+ "\n" + "Moters = " + motors.getStockValue() + "\n" +"Steel +" +steel.getStockValue() +
+    		str += ("The current value of stocks"+ "\n" + "Moters = " + motors.getStockValue() + "\n" +"Steel +" +steel.getStockValue() +
     		"\n"+ "Shipping = " +shipping.getStockValue() + "\n" + "Stores = " + stores.getStockValue());
     		
-    		return Str;
+    		return str;
     	}
     	
     public int generateCardIndex(Player currentPlayer) {//changed
