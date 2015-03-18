@@ -8,8 +8,6 @@ public class Bank {
 				 card21, card22, card23, card24, card25;
 				 
 	private Stock motors, shipping, steel, stores;
-				 
-	private int motorPool, shippingPool, steelPool, storesPool;
 	
 	private ArrayList<Player> players;
 	private ArrayList<Card> cards;
@@ -24,56 +22,11 @@ public class Bank {
 		steel = new Stock("Steel");
 		stores = new Stock("Stores");
 		
-		motorPool = 28;
-		shippingPool = 28;
-		steelPool = 28;
-		storesPool = 28;
-		
 		players = new ArrayList<Player>();
 		cards =  new ArrayList<Card>();
 		
 		initialiseCards();
 	
-	}
-	
-	public void addStockToPool(String stockType, int value)
-	{
-		if(stockType == "Motors")
-		{
-			this.motorPool += value;
-		}
-		else if(stockType == "Shipping")
-		{
-			this.shippingPool += value;
-		}
-		else if(stockType == "Steel")
-		{
-			this.steelPool += value;
-		}
-		else if(stockType == "Stores")
-		{
-			this.storesPool += value;
-		}
-	}
-	
-	public void takeStockFromPool(String stockType, int value)
-	{
-		if(stockType == "Motors")
-		{
-			this.motorPool -= value;
-		}
-		else if(stockType == "Shipping")
-		{
-			this.shippingPool -= value;
-		}
-		else if(stockType == "Steel")
-		{
-			this.steelPool -= value;
-		}
-		else if(stockType == "Stores")
-		{
-			this.storesPool -= value;
-		}
 	}
 	
 	public ArrayList<Player> getPlayers()
@@ -217,7 +170,7 @@ public class Bank {
 		}
 	}
 	
-	public void load() throws Exception
+	/*public void load() throws Exception
  	{
     		players = HandleXML.read("players.xml");
     	}
@@ -225,16 +178,21 @@ public class Bank {
 	 public void save() throws Exception
     	{
     		HandleXML.write(players, "players.xml");
-    	}
+    	}*/
     	
-    	public String checkCurrentBankStock()
+    	/*
+     * I changed how the stocks are done and this method is now giving errors so I'm just commenting it 
+     * out for now as I can't see it being used anywhere at the moment.
+     * -Chris	
+     */
+    	/*public String checkCurrentBankStock()
 	{String str = "";
 
 		str += ("The current stock in the bank is"+ "\n" + "Motors = " + motorPool + "\n" +"Steel = " + steelPool +
 		"\n"+ "Shipping = " +shippingPool+ "\n" + "Stores = " + storesPool  );
 
 		return str;
-}  
+}  */
 	public String updatedStockValue(){
     		String Str = "";
     		
