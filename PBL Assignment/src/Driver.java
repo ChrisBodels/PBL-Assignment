@@ -456,20 +456,5 @@ public class Driver
 			}
 		}
 	}
- 	/*
-	 * The method draws a card using the method in the bank class, still have not be able to 
-	 * remove previous cards working on it.
-	 * -Dave
-	 */
-     private String cardDraw(int amount) {
-
-		int amountPlayers = bank.getPlayers().size();
-
-		String str = "";
-		if (amount <= amountPlayers) {
-			str += bank.generateCard();
-		}
-		return str;
-
-	}
+ 	
 }
