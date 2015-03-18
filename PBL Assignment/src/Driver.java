@@ -96,6 +96,10 @@ public class Driver
 		{
 			System.out.println("Now beginning round number " + roundNumber);
 			players = bank.getPlayers();
+			for (Player currentsPlayer : players) {
+				bank.generateCardIndex(currentsPlayer);
+				bank.removeCard(currentsPlayer);
+			}
 			for(Player currentPlayer : players)
 			{
 				System.out.println( currentPlayer.getUserName() + "'s turn");
