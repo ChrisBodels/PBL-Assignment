@@ -1,7 +1,7 @@
 
 public class Player {
 
-	private int balance, motorStocks, shippingStocks, storesStocks, steelStocks;
+	private int balance, motorStocks, shippingStocks, storesStocks, steelStocks, card;
 	private boolean loanStatus;
 	private String userName;
 	
@@ -22,6 +22,14 @@ public class Player {
 		this.shippingStocks = 0;
 		this.storesStocks = 0;
 		this.steelStocks = 0;
+		this.card = 0;
+	}
+	public void setCard(int card) {
+		this.card = card;
+	}
+
+	public int getCard() {
+		return this.card;
 	}
 	
 	public void setLoanStatus(boolean loanStatus)
