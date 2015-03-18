@@ -98,7 +98,6 @@ public class Driver
 			players = bank.getPlayers();
 			for(Player currentPlayer : players)
 			{
-				int counter = 1;//counter for case 3*Dave
 				System.out.println( currentPlayer.getUserName() + "'s turn");
 				int option = -1;
 				bank.generateCardIndex(currentPlayer);//gives each player an index
