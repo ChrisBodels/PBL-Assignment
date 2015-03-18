@@ -104,7 +104,7 @@ public class Driver
 			{
 				System.out.println( currentPlayer.getUserName() + "'s turn");
 				
-				if(currentPlayer.getLoanStatus())//also need validation in here 
+				if(currentPlayer.getLoanStatus())//THIS IS NEW, also need validation in here 
 				{
 					currentPlayer.setBalanceDown(20);
 				}
@@ -151,7 +151,7 @@ public class Driver
 						case 5://This is currently printing out on card per user.*Dave
 							System.out.println(bank.generateCard(currentPlayer));
 							System.out.println("\nPress any key to continue..");
-							input.nextLine();
+							input.nextLine();//SOME NEW SHIT AROUND HERE DOWN TO THE BREAK OF CASE 7
 							input.nextLine();
 						break;
 						case 6:
