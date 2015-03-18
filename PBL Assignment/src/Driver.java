@@ -167,6 +167,7 @@ public class Driver
 				}
 			}
 			roundNumber ++;
+			bank.resetArray();//new//
 		}
 	}
 
