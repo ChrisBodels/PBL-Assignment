@@ -81,6 +81,7 @@ public class Driver
 		System.out.println("  5) Check your card for this round");
 		System.out.println("  6) Take loan");
 		System.out.println("  7) Repay loan (if currently on loan)");
+		System.out.println("  8) Save Player Scores to leaderboard");
 		System.out.println("  0) End turn");
 		int option = input.nextInt();
 		return option;
@@ -91,7 +92,7 @@ public class Driver
 	 * Not sure on specifics yet, just doing it to get things working and working through things in my head.
 	 * -Chris
 	*/
-	public void mainRound()
+	public void mainRound() throws Exception
 	{
 		int roundNumber = 1;
 		while(roundNumber < 13)
@@ -165,6 +166,9 @@ public class Driver
 							currentPlayer.setBalanceDown(100);
 							currentPlayer.setLoanStatus(false);
 						break;
+						case 8:
+							saveGame();
+						break;
 					}
 				}
 			}
@@ -173,7 +177,7 @@ public class Driver
 		}
 	}
 
-	public void addPlayer() 
+	public void addPlayer() throws Exception 
 	{
 		System.out.println("Please enter the amount of players");
 		int playerAmount = input.nextInt();
@@ -532,6 +536,11 @@ public class Driver
 		System.out.println("\f");
 		players.clear();
 		runMenu();
+	}
+	
+	public void saveGame() throws Exception
+	{
+		bank.save();
 	}
  	
 }
