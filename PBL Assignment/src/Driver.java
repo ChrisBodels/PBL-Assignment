@@ -6,15 +6,16 @@ public class Driver
 	private Scanner input;
 	private Bank bank;
 	private ArrayList<Player> players;
+	private ArrayList<Player> highScore;
 	
 	
-	public Driver() {
+	public Driver() throws Exception {
 		bank = new Bank();
 		input = new Scanner(System.in);
 		runMenu();		
 	}
 	
-	public static void main (String args[])
+	public static void main (String args[]) throws Exception
 	{
 		Driver app = new Driver();
 		
@@ -28,6 +29,7 @@ public class Driver
 
 		System.out.println("What would you like to do?");
 		System.out.println("  1) Start game");
+		System.out.println("  2) Previous game final score");
 		System.out.println("  0) Exit");
 		System.out.print("==>> ");
 		int option = input.nextInt();
@@ -36,7 +38,7 @@ public class Driver
 
 
 
-	private void runMenu() {
+	private void runMenu() throws Exception {
 		int option = mainMenu();
 		while (option != 0) {
 			// clear the terminal window
@@ -47,7 +49,7 @@ public class Driver
 				addPlayer();
 				break;
 			case 2:
-				//
+				lastScore();
 				break;
 
 			default:
