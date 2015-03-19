@@ -282,5 +282,14 @@ public class Bank {
 		this.removeCards = cards; 
 	}
 	
+	public void load() throws Exception
+    {
+    	players = HandleXML.read("players.xml");
+    }
+    
+    public void save() throws Exception
+    {
+    	HandleXML.write(players, "players.xml");
+    }
 
 }
