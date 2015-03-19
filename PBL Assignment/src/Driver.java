@@ -477,5 +477,59 @@ public class Driver
 			}
 		}
 	}
+	
+	public void lastScore() throws Exception
+	{
+		bank.load();
+		
+		highScore = new ArrayList<Player>();
+	
+		for(int i=0; i<players.size() ; i++)
+		{
+			if(highScore.size() == 0 || players.get(i).getBalance() > highScore.get(0).getBalance() )
+			{
+				highScore.add(0, players.get(i));
+			}
+			else if(players.get(i).getBalance() > highScore.get(1).getBalance())
+			{
+				highScore.add(1, players.get(i));
+			}
+			else if(players.get(i).getBalance() > highScore.get(2).getBalance())
+			{
+				highScore.add(2, players.get(i));
+			}
+			else if(players.get(i).getBalance() > highScore.get(3).getBalance())
+			{
+				highScore.add(3, players.get(i));
+			}
+			else if(players.get(i).getBalance() > highScore.get(4).getBalance())
+			{
+				highScore.add(4, players.get(i));
+			}
+			else
+			{
+				highScore.add(5, players.get(i));
+			}
+		}
+		System.out.println("Here are the end scores of the last game: ");
+		System.out.println("--------------------------------------------");
+		System.out.println("Postion: Name:	Money");
+		System.out.println("1		" + highScore.get(0).getUserName() +"	 " + highScore.get(0).getBalance() );
+		System.out.println("2		" + highScore.get(1).getUserName() +"	 " + highScore.get(0).getBalance());
+		System.out.println("3		" + highScore.get(2).getUserName() +"	 " + highScore.get(0).getBalance());
+		System.out.println("4		" + highScore.get(3).getUserName() +"	 " + highScore.get(0).getBalance());
+		System.out.println("5		" + highScore.get(4).getUserName() +"	 " + highScore.get(0).getBalance());
+		System.out.println("6		" + highScore.get(5).getUserName() +"	 " + highScore.get(0).getBalance());
+		System.out.println("");
+		System.out.println("/nPress any key to continue...");
+		
+		input.nextLine();
+		input.nextLine(); 
+
+		
+		System.out.println("\f");
+		players.clear();
+		runMenu();
+	}
  	
 }
