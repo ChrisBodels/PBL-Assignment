@@ -94,7 +94,7 @@ public class Driver
 	*/
 	public void mainRound() throws Exception
 	{
-		int roundNumber = 1;
+	  	int roundNumber = 1;
 		while(roundNumber < 13)
 		{
 			System.out.println("Now beginning round number " + roundNumber);
