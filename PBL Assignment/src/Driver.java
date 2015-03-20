@@ -48,8 +48,10 @@ public class Driver
 			case 1:
 				addPlayer();
 				break;
-			case 2:
-				lastScore();
+			case 2:		try
+				{lastScore();}
+				catch (Exception e)
+				{System.out.println("Error reading from file: " + e);}
 				break;
 
 			default:
