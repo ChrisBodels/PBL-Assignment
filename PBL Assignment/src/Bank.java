@@ -278,6 +278,17 @@ public class Bank {
 			stores.setStockAmount(amount);
 		}
 	}
+	
+	public void setStockValue(String stockType, int amount) {
+		if (stockType == "Motors") {
+			motors.setStockValue(amount);
+		} else if (stockType == "Shipping") {
+			shipping.setStockValue(amount);
+		} else if (stockType == "Steel") {
+			steel.setStockValue(amount);
+		} else if (stockType == "Stores") {
+			stores.setStockValue(amount);
+		}
     	
     	/*
      * I changed how the stocks are done and this method is now giving errors so I'm just commenting it 
