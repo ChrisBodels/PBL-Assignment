@@ -218,7 +218,7 @@ public class Driver
 					}
 				}
 			}
-			bank.resetArray();
+			bank.initialiseCards();//NEW replaced old one//
 			roundNumber++;
 			bank.setStockValue("Motors", motorsNew);
 			bank.setStockValue("Steel", steelNew);
