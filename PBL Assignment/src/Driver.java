@@ -247,6 +247,7 @@ public class Driver
 						String name = input.next();
 						bank.add(new Player(name));
 						counter ++;
+						inputOk = true;
 					}
 					catch(Exception e)
 					{
