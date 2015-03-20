@@ -20,4 +20,14 @@ public class Card {
 	            "|                  | \n"+
 	            "|__________________| \n");
 	}
+	
+	public String getStockType()
+	{
+		return stockType;
+	}
+	
+	public int getValue()
+	{
+		return value;
+	}
 }
