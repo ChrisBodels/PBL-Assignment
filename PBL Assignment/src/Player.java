@@ -31,6 +31,12 @@ public class Player {
 		playerSteel.setStockAmount(-28);
 		playerStores.setStockAmount(-28);
 	}
+	
+	//This blank constructor is needed for saving the xml file - Paddy
+	public Player()
+	{
+		
+	}
 	public void setCard(int card) //sets the card to that of the index number
 	{
 		this.card = card;
