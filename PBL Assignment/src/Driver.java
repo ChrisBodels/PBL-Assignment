@@ -92,89 +92,131 @@ public class Driver
 	 * Not sure on specifics yet, just doing it to get things working and working through things in my head.
 	 * -Chris
 	*/
-	public void mainRound() throws Exception
-	{
-	  	int roundNumber = 1;
-		while(roundNumber < 13)
-		{
+	public void mainRound() throws Exception {
+		int roundNumber = 1;
+		while (roundNumber < 13) {
 			System.out.println("Now beginning round number " + roundNumber);
 			players = bank.getPlayers();
-			for (Player currentsPlayer : players) {
-				bank.generateCardIndex(currentsPlayer);
-				bank.removeCard(currentsPlayer);
-			}
-			for(Player currentPlayer : players)
-			{
-				System.out.println( currentPlayer.getUserName() + "'s turn");
-				
-				if(currentPlayer.getLoanStatus())//THIS IS NEW, also need validation in here 
+
+			int motorsNew = bank.getStockPrice("Motors");
+			int shippingNew = bank.getStockPrice("Shipping");
+			int steelNew = bank.getStockPrice("Steel");
+			int storesNew = bank.getStockPrice("Stores");
+
+			for (Player currentPlayer : players) {
+				bank.generateCardIndex(currentPlayer);
+				bank.removeCard(currentPlayer);
+				if (currentPlayer.getLoanStatus())// THIS IS NEW, also need
+													// validation in here
 				{
 					currentPlayer.setBalanceDown(20);
 				}
-				
-				int option = -1;
-				bank.generateCardIndex(currentPlayer);//gives each player an index
-				
-				while(option != 0)
+				// setVariables(currentPlayer,motorsNew ,shippingNew ,steelNew
+				// ,storesNew);
+				if (bank.getStockType(currentPlayer) == "Motors") {
+					motorsNew += bank.cardValue(currentPlayer);
+
+				} else if (bank.getStockType(currentPlayer) == "Shipping") {
+
+					shippingNew += bank.cardValue(currentPlayer);
+
+				} else if (bank.getStockType(currentPlayer) == "Steel") {
+
+					steelNew += bank.cardValue(currentPlayer);
+
+				} else if (bank.getStockType(currentPlayer) == "Bull") {
+
+					motorsNew += 4;
+					shippingNew += 4;
+					steelNew += 4;
+					storesNew += 4;
+
+				} else if (bank.getStockType(currentPlayer) == "Stores") {
+
+					storesNew += bank.cardValue(currentPlayer);
+				} else if (bank.getStockType(currentPlayer) == "Bear") {
+
+					motorsNew += -4;
+					shippingNew += -4;
+					steelNew += -4;
+					storesNew += -4;
+
+				}
+
 				{
-					System.out.println("\f");
-					option = roundMenu();
-					
-					switch(option)
-					{
+					System.out.println(currentPlayer.getUserName() + "'s turn");
+					int option = -1;
+					while (option != 0) {
+						System.out.println("\f");
+						option = roundMenu();
+						switch (option) {
 						case 1:
 							chooseStock("buy", currentPlayer);
-						break;
+							break;
 						case 2:
 							chooseStock("sell", currentPlayer);
-						break;
+							break;
 						case 3:
-							System.out.println("\nYour current balance is £" + currentPlayer.getBalance());
-							System.out.println("\nYour current Motors stock: " + currentPlayer.getStocks("Motors"));
-							System.out.println("Your current Shipping stock: " + currentPlayer.getStocks("Shipping"));
-							System.out.println("Your current Steel stock: " + currentPlayer.getStocks("Steel"));
-							System.out.println("Your current Stores stock: " + currentPlayer.getStocks("Stores"));
-							System.out.println("\nPress any key to continue...");
+							System.out.println("\nYour current balance is £"
+									+ currentPlayer.getBalance());
+							System.out.println("\nYour current Motors stock: "
+									+ currentPlayer.getStocks("Motors"));
+							System.out.println("Your current Shipping stock: "
+									+ currentPlayer.getStocks("Shipping"));
+							System.out.println("Your current Steel stock: "
+									+ currentPlayer.getStocks("Steel"));
+							System.out.println("Your current Stores stock: "
+									+ currentPlayer.getStocks("Stores"));
+							System.out
+									.println("\nPress any key to continue...");
 							input.nextLine();
 							input.nextLine();
-						break;
+							break;
 						case 4:
-							System.out.println("\nMotors current stock price: £" + bank.getStockPrice("Motors"));
-							System.out.println("Shipping current stock price: £" + bank.getStockPrice("Shipping"));
-							System.out.println("Steel current stock price: £" + bank.getStockPrice("Steel"));
-							System.out.println("Stores current stock price: £" + bank.getStockPrice("Stores"));
-							System.out.println("\nMotors current stock amount: " + bank.getStockAmount("Motors"));
-							System.out.println("Shipping current stock amount: " + bank.getStockAmount("Shipping"));
-							System.out.println("Steel current stock amount: " + bank.getStockAmount("Steel"));
-							System.out.println("Stores current stock amount: " + bank.getStockAmount("Stores"));
-							System.out.println("\nPress any key to continue...");
+							System.out
+									.println("\nMotors current stock price: £"
+											+ bank.getStockPrice("Motors"));
+							System.out
+									.println("Shipping current stock price: £"
+											+ bank.getStockPrice("Shipping"));
+							System.out.println("Steel current stock price: £"
+									+ bank.getStockPrice("Steel"));
+							System.out.println("Stores current stock price: £"
+									+ bank.getStockPrice("Stores"));
+							System.out
+									.println("\nMotors current stock amount: "
+											+ bank.getStockAmount("Motors"));
+							System.out
+									.println("Shipping current stock amount: "
+											+ bank.getStockAmount("Shipping"));
+							System.out.println("Steel current stock amount: "
+									+ bank.getStockAmount("Steel"));
+							System.out.println("Stores current stock amount: "
+									+ bank.getStockAmount("Stores"));
+							System.out
+									.println("\nPress any key to continue...");
 							input.nextLine();
 							input.nextLine();
-						break;
-						case 5://This is currently printing out on card per user.*Dave
-							System.out.println(bank.generateCard(currentPlayer));
+							break;
+						case 5:// This is currently printing out on card per
+								// user.*Dave
+							System.out
+									.println(bank.generateCard(currentPlayer));
 							System.out.println("\nPress any key to continue..");
-							input.nextLine();//SOME NEW SHIT AROUND HERE DOWN TO THE BREAK OF CASE 7
 							input.nextLine();
-						break;
-						case 6:
-							currentPlayer.setLoanStatus(true);
-							currentPlayer.setBalanceUp(80);
-						break;
-						case 7:
-							//Needs validation like a motherfucker
-							currentPlayer.setBalanceDown(100);
-							currentPlayer.setLoanStatus(false);
-						break;
-						case 8:
-							saveGame();
-						break;
+							input.nextLine();
+						}
 					}
 				}
 			}
-			roundNumber ++;
-			bank.resetArray();//new//
+			bank.resetArray();
+			roundNumber++;
+			bank.setStockValue("Motors", motorsNew);
+			bank.setStockValue("Steel", steelNew);
+			bank.setStockValue("Shipping", shippingNew);
+			bank.setStockValue("Stores", storesNew);
 		}
+
 	}
 
 	public void addPlayer() throws Exception 
