@@ -238,10 +238,22 @@ public class Driver
 		{ 
 			while (counter <= playerAmount)
 			{
-				System.out.println("Please enter player number "  +counter+ "'s name");
-				String name = input.next();
-				bank.add(new Player(name));
-				counter ++;
+				boolean inputOk = false;
+				do
+				{
+					try
+					{
+						System.out.println("Please enter player number "  +counter+ "'s name");
+						String name = input.next();
+						bank.add(new Player(name));
+						counter ++;
+					}
+					catch(Exception e)
+					{
+						String throwOut = input.nextLine();
+						System.out.println("Text expected - you entered numbers");
+					}
+				}while(!inputOk);
 			}	
 		}
 		else
