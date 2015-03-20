@@ -274,16 +274,6 @@ public class Bank {
 			stores.setStockAmount(amount);
 		}
 	}
-	
-	/*public void load() throws Exception
- 	{
-    		players = HandleXML.read("players.xml");
-    	}
-    
-	 public void save() throws Exception
-    	{
-    		HandleXML.write(players, "players.xml");
-    	}*/
     	
     	/*
      * I changed how the stocks are done and this method is now giving errors so I'm just commenting it 
