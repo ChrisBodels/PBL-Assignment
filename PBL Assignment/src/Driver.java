@@ -205,6 +205,13 @@ public class Driver
 							System.out.println("\nPress any key to continue..");
 							input.nextLine();
 							input.nextLine();
+						case 8:
+							try{
+								bank.save();}
+							catch (Exception e){
+								System.out.println("Error writing to file: " + e);
+							}
+							break; // new save with exception handling - Paddy
 						}
 					}
 				}
@@ -580,9 +587,5 @@ public class Driver
 		runMenu();
 	}
 	
-	public void saveGame() throws Exception
-	{
-		bank.save();
-	}
  	
 }
