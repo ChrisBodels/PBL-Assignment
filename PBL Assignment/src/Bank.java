@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Collections;//NEW Method 20/3/
 
 public class Bank {
 	
@@ -11,8 +12,9 @@ public class Bank {
 	
 	private ArrayList<Player> players;
 	private ArrayList<Card> cards;
-	Random randomGenerator = new Random();
 	private ArrayList<Card> removeCards;//new
+	Random randomGenerator = new Random();
+	
 	
 	
 	public Bank()
@@ -305,6 +307,7 @@ public class Bank {
 	}
 	
 	public void removeCard(Player currentPlayer) {//UPDATED!!
+	
 		removeCards.remove(currentPlayer.getCard());
 	}
 	
@@ -330,7 +333,7 @@ public class Bank {
 	 */
 	public void resetArray(){
 		
-		this.removeCards = cards; 
+		Collections.copy(cards, removeCards);
 	}
 	
 	public void load() throws Exception
