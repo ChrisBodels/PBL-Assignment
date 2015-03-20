@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Collections;//NEW Method 20/3/
+
 
 public class Bank {
 	
@@ -346,10 +346,7 @@ public class Bank {
 	 * New method to reset the remove cards array
 	 * 
 	 */
-	public void resetArray(){
-		
-		Collections.copy(cards, removeCards);
-	}
+	
 	
 	public void load() throws Exception
     {
