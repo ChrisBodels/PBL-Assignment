@@ -1,4 +1,8 @@
-
+/**
+ * Description of Class.
+ * 
+ * @author Chris, David, Patrick, Brian, Igor 
+ */
 public class Player {
 
 	private int balance, card;
