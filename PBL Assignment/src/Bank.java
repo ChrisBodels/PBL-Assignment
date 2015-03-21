@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.Random;
-
-
+/**
+ * Description of Class.
+ * 
+ * @author Chris, David, Patrick, Brian, Igor 
+ */
 public class Bank {
 	
 	private Card card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
