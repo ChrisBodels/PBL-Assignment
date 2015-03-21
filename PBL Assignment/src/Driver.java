@@ -278,7 +278,7 @@ public class Driver
 			bank.setStockValue("Shipping", shippingNew);
 			bank.setStockValue("Stores", storesNew);
 		}
-
+            System.out.println(finale());
 	}
 
 	public void addPlayer() throws Exception 
@@ -674,6 +674,23 @@ public class Driver
 			str += ("No one finished the game bankrupt.");
 			return str;
 		}
+	}
+	
+	public String finale() {
+
+		String str = "";
+		if (players.size() > 0) {
+			for (Player currentPlayer : players)
+				str += (currentPlayer.getUserName()
+						+ " ended the game with a balance of £ " + currentPlayer
+						.getBalance())+ "\n";
+			return str;
+
+		} else {
+			str += ("No one finished the game.");
+			return str;
+		}
+
 	}
 	
  	
