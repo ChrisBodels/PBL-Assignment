@@ -90,6 +90,7 @@ public class Driver
 
 				System.out.println("Exiting... bye");
 				System.exit(0);
+				inputOk = true;
 			}
 			catch(Exception e)
 			{
@@ -188,6 +189,9 @@ public class Driver
 				{
 					System.out.println(currentPlayer.getUserName() + "'s turn");
 					int option = -1;
+					boolean inputOk = false;
+					do{
+						try{
 					while (option != 0) {
 						System.out.println("\f");
 						option = roundMenu();
@@ -210,40 +214,40 @@ public class Driver
 							System.out.println("Your current Stores stock: "
 									+ currentPlayer.getStocks("Stores"));
 							System.out
-									.println("\nPress any key to continue...");
+							.println("\nPress any key to continue...");
 							input.nextLine();
 							input.nextLine();
 							break;
 						case 4:
 							System.out
-									.println("\nMotors current stock price: £"
-											+ bank.getStockPrice("Motors"));
+							.println("\nMotors current stock price: £"
+									+ bank.getStockPrice("Motors"));
 							System.out
-									.println("Shipping current stock price: £"
-											+ bank.getStockPrice("Shipping"));
+							.println("Shipping current stock price: £"
+									+ bank.getStockPrice("Shipping"));
 							System.out.println("Steel current stock price: £"
 									+ bank.getStockPrice("Steel"));
 							System.out.println("Stores current stock price: £"
 									+ bank.getStockPrice("Stores"));
 							System.out
-									.println("\nMotors current stock amount: "
-											+ bank.getStockAmount("Motors"));
+							.println("\nMotors current stock amount: "
+									+ bank.getStockAmount("Motors"));
 							System.out
-									.println("Shipping current stock amount: "
-											+ bank.getStockAmount("Shipping"));
+							.println("Shipping current stock amount: "
+									+ bank.getStockAmount("Shipping"));
 							System.out.println("Steel current stock amount: "
 									+ bank.getStockAmount("Steel"));
 							System.out.println("Stores current stock amount: "
 									+ bank.getStockAmount("Stores"));
 							System.out
-									.println("\nPress any key to continue...");
+							.println("\nPress any key to continue...");
 							input.nextLine();
 							input.nextLine();
 							break;
 						case 5:// This is currently printing out on card per
-								// user.*Dave
+							// user.*Dave
 							System.out
-									.println(bank.generateCard(currentPlayer));
+							.println(bank.generateCard(currentPlayer));
 							System.out.println("\nPress any key to continue..");
 							input.nextLine();
 							input.nextLine();
@@ -253,9 +257,18 @@ public class Driver
 							catch (Exception e){
 								System.out.println("Error writing to file: " + e);
 							}
-							break; // new save with exception handling - Paddy
+							break; // new save with exception handling
+
 						}
 					}
+					inputOk=true;
+					}
+					catch(Exception e)
+					{
+						String throwOut = input.nextLine();
+						System.out.println("Numbers expected - you entered text");
+					}
+					}while(!inputOk);
 				}
 			}
 			bank.initialiseCards();//NEW replaced old one//
