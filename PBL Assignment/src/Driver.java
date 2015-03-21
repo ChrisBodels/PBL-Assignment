@@ -684,7 +684,7 @@ public class Driver
 		if (players.size() > 0) {
 			for (Player currentPlayer : players)
 				str += (currentPlayer.getUserName()
-						+ " ended the game with a balance of £ " + currentPlayer
+						+ " ended the game with a balance of £" + currentPlayer
 						.getBalance())+ "\n";
 			return str;
 
