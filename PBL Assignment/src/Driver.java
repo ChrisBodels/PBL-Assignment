@@ -7,7 +7,7 @@ public class Driver
 	private Scanner input;
 	private Bank bank;
 	private ArrayList<Player> players;
-	private ArrayList<Player> highScore
+	private ArrayList<Player> highScore;
 	private ArrayList<String> bankruptPlayers;
 	
 	
