@@ -1,12 +1,14 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
 public class Driver 
 {
 	private Scanner input;
 	private Bank bank;
 	private ArrayList<Player> players;
-	private ArrayList<Player> highScore;
+	private ArrayList<Player> highScore
+	private ArrayList<String> bankruptPlayers;
 	
 	
 	public Driver() throws Exception {
