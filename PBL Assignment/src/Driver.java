@@ -1,5 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+/**
+ * Description of Class.
+ * 
+ * @author Chris, David, Patrick, Brian, Igor 
+ */
 
 
 public class Driver 
