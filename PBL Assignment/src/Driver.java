@@ -32,7 +32,21 @@ public class Driver
 		System.out.println("  2) Previous game final score");
 		System.out.println("  0) Exit");
 		System.out.print("==>> ");
-		int option = input.nextInt();
+		
+		boolean inputOk = false;
+		int option = 0;
+		do{
+			try{
+				option = input.nextInt();
+				inputOk = true;
+				
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Numbers expected - you entered text");
+			}
+		}while(!inputOk);
 		return option;
 	}
 
@@ -40,37 +54,49 @@ public class Driver
 
 	private void runMenu() throws Exception {
 		int option = mainMenu();
-		while (option != 0) {
-			// clear the terminal window
-			System.out.println("\f");
+		boolean inputOk = false;
+		do
+		{
+			try
+			{
+				while (option != 0) {
+					// clear the terminal window
+					System.out.println("\f");
 
-			switch (option) {
-			case 1:
-				addPlayer();
-				break;
-			case 2:		try
-				{lastScore();}
-				catch (Exception e)
-				{System.out.println("Error reading from file: " + e);}
-				break;
+					switch (option) {
+					case 1:
+						addPlayer();
+						break;
+					case 2:		try
+					{lastScore();}
+					catch (Exception e)
+					{System.out.println("Error reading from file: " + e);}
+					break;
 
-			default:
-				System.out.println("Invalid option entered: " + option);
-				break;
+					default:
+						System.out.println("Invalid option entered: " + option);
+						break;
+					}
+
+
+					System.out.println("\nPress any key to continue...");
+					input.nextLine();
+					input.nextLine(); 
+
+
+					System.out.println("\f");
+					option = mainMenu();
+				}
+
+				System.out.println("Exiting... bye");
+				System.exit(0);
 			}
-
-			
-			System.out.println("\nPress any key to continue...");
-			input.nextLine();
-			input.nextLine(); 
-
-			
-			System.out.println("\f");
-			option = mainMenu();
-		}
-		
-		System.out.println("Exiting... bye");
-		System.exit(0);
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Numbers expected - you entered text");
+			}
+		}while(!inputOk);
 
 	}
 	
