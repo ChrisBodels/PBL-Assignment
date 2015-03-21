@@ -655,5 +655,26 @@ public class Driver
 		runMenu();
 	}
 	
+	public void removeBankruptPlayer(Player currentPlayer) {
+
+		if (currentPlayer.getBalance() <= 0) {
+			String userName = currentPlayer.getUserName();
+			bankruptPlayers.add(userName);
+			players.remove(currentPlayer);
+		}
+	}
+
+	public String getBankruptResults() {
+		String str = "";
+		if (bankruptPlayers.size() > 0) {
+			for (int i = 0; i <= bankruptPlayers.size(); i++)
+				str += (bankruptPlayers.get(i) + " was kicked from the game as they were bankrupt." + "\n");
+			return str;
+		} else {
+			str += ("No one finished the game bankrupt.");
+			return str;
+		}
+	}
+	
  	
 }
