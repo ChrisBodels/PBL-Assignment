@@ -111,7 +111,21 @@ public class Driver
 		System.out.println("  7) Repay loan (if currently on loan)");
 		System.out.println("  8) Save Player Scores to leaderboard");
 		System.out.println("  0) End turn");
-		int option = input.nextInt();
+	
+		boolean inputOk = false;
+		int option = 0;
+		do{
+			try{
+				option = input.nextInt();
+				inputOk = true;
+				
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Numbers expected - you entered text");
+			}
+		}while(!inputOk);
 		return option;
 	}
 	
