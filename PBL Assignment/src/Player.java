@@ -92,7 +92,11 @@ public class Player {
 	{
 		return this.loanStatus;
 	}
-	
+	/**
+	 * This method will change the amount of stocks the player has. 
+	 * @param stockType
+	 * @param amount
+	 */
 	public void setStocksUp(String stockType, int amount)
 	{
 		if(stockType == "Motors")
