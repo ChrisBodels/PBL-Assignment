@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 /**
- * Description of Class.
+ * This class displays a basic version of a menu for the game board game 'Stock and Shares'.
  * 
  * @author Chris, David, Patrick, Brian, Igor 
  */
@@ -15,6 +15,11 @@ public class Driver
 	private ArrayList<Player> highScore;
 	private ArrayList<String> bankruptPlayers;
 	
+	/**
+	 * This method starts the whole application
+	 * @param args
+	 * @throws Exception
+	 */
 	
 	public Driver() throws Exception {
 		bank = new Bank();
@@ -23,6 +28,12 @@ public class Driver
 		runMenu();		
 	}
 	
+	/**
+	 *  This method shows the menu for the application, and shows the 
+	 *  menu options for user. It also reads the options user has entered
+ 	 *  and returns it.
+	 * @return		the users menu choice
+ 	 */
 	public static void main (String args[]) throws Exception
 	{
 		Driver app = new Driver();
