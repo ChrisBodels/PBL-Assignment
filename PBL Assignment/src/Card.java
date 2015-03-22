@@ -14,7 +14,11 @@ public class Card {
 		this.value = value;
 	}
 	
-	
+	/**
+	 * This builds a string of all the information that this class holds, 
+	 * then it displays it in a neat format of the object state that is very much user friendly.
+	 * @return  's the details of a specific card.
+	 */
 	public String toString()
 	{
 		return (" __________________\n"+
