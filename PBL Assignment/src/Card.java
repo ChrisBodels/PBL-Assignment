@@ -1,5 +1,5 @@
 /**
- * Description of Class.
+ * This class is dedicated towards the 26 cards that exist in the Stock and Share game.
  * 
  * @author Chris, David, Patrick, Brian, Igor 
  */
