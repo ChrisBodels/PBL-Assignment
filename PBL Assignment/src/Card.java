@@ -8,6 +8,11 @@ public class Card {
 	private String stockType;
 	private int value;
 	
+	/**
+	 * Constructor for the objects of class Card.
+	 * @param stockType
+	 * @param value
+	 */
 	public Card(String stockType, int value)
 	{
 		this.stockType = stockType;
