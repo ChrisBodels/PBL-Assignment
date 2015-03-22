@@ -333,7 +333,21 @@ public class Driver
 		System.out.println("  3) Steel");
 		System.out.println("  4) Stores");
 		System.out.println("  0) Cancel");
-		int option = input.nextInt();
+		
+		int option = 0;
+		boolean inputOk = false;
+		do{
+			try
+			{
+				option = input.nextInt();
+				inputOk = true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Numbers expected - you entered text");
+			}
+		}while(!inputOk);
 		return option;
 	}
 	
@@ -418,7 +432,21 @@ public class Driver
 		System.out.println("  7) Fifteen stocks");
 		System.out.println("  8) Twenty stocks");
 		System.out.println("  9) Twenty-Five stocks");
-		int option = input.nextInt();
+		
+		int option = 0;
+		boolean inputOk = false;
+		do{
+			try
+			{
+				option = input.nextInt();
+				inputOk = true;
+			}
+			catch(Exception e)
+			{
+				String throwOut = input.nextLine();
+				System.out.println("Numbers expected - you entered text");
+			}
+		}while(!inputOk);
 		return option;
 		
 	}
