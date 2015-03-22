@@ -310,6 +310,10 @@ public class Bank {
 
 		return str;
 }  */
+	/**
+	 * This method shows the updated value of stocks. 
+	 * @return
+	 */
 	public String updatedStockValue(){
     		String str = "";
     		
@@ -325,7 +329,10 @@ public class Bank {
 		currentPlayer.setCard(index);
 
 	}
-	
+	/**
+	 * This method removes the card that has been dealt from the arraylist.
+	 * @param currentPlayer
+	 */
 	public void removeCard(Player currentPlayer) {//UPDATED!!
 	
 		removeCards.remove(currentPlayer.getCard());
