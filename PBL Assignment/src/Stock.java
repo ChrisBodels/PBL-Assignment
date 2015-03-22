@@ -9,6 +9,10 @@ public class Stock {
 	int stockAmount;
 	int stockValue;
 	
+	/**
+	 * Constructor for objects of class Stock.
+	 * @param stockType
+	 */
 	public Stock(String stockType)
 	{
 		this.stockValue = 10;
