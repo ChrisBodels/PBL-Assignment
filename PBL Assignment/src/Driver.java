@@ -259,6 +259,16 @@ public class Driver
 							System.out.println("\nPress any key to continue..");
 							input.nextLine();
 							input.nextLine();
+						break;
+						case 6:
+							currentPlayer.setLoanStatus(true);
+							currentPlayer.setBalanceUp(80);
+						break;
+						case 7:
+							//Needs validation
+							currentPlayer.setBalanceDown(100);
+							currentPlayer.setLoanStatus(false);
+						break;
 						case 8:
 							try{
 								bank.save();}
