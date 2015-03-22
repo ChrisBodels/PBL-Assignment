@@ -1,5 +1,5 @@
 /**
- * Description of Class.
+ * This class is for player.
  * 
  * @author Chris, David, Patrick, Brian, Igor 
  */
@@ -10,6 +10,10 @@ public class Player {
 	private String userName;
 	private Stock playerMotors, playerShipping, playerSteel, playerStores;
 	
+	/**
+	 * Constructor for objects of class Player.
+	 * @param userName
+	 */
 	public Player(String userName)
 	{
 		this.balance = 80;
