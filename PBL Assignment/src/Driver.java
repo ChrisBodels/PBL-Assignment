@@ -40,6 +40,10 @@ public class Driver
 		
 	}
 	
+	/**
+	 * This is the starting menu for the driver. 
+	 * @return
+	 */
 	private int mainMenu() {
 		System.out.println(" ___________________________________________\n" + 
                 "|                                           |\n" + 
@@ -454,7 +458,7 @@ public class Driver
 		
 	}
 	/**
-	 * This method allows the player to buy or sell any of the stocks they own.
+	 * This method allows the player to chose the amount of stock he/she wants to buy.
 	 * @param stockType
 	 * @param buyOrSell
 	 * @param currentPlayer
@@ -490,7 +494,12 @@ public class Driver
 		return option;
 		
 	}
-	
+	/**
+	 * This method shows the amount of stocks that are avalible and to buy and sell stocks.
+	 * @param stockType
+	 * @param buyOrSell
+	 * @param currentPlayer
+	 */
 	public void chooseAmount(String stockType, String buyOrSell, Player currentPlayer)
 	{
 		int option = chooseAmountMenu(buyOrSell);
