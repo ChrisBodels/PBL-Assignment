@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 /**
- * Description of Class.
+ * In this class, most of the calculations are done which are crucial.
  * 
  * @author Chris, David, Patrick, Brian, Igor 
  */
@@ -21,7 +21,9 @@ public class Bank {
 	private ArrayList<Player> highScore;// moved to bank from driver - Paddy
 	
 	
-	
+	/**
+	 * Constructor for the objects of class Card.
+	 */
 	public Bank()
 	{
 	
