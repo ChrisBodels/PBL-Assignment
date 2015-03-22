@@ -18,6 +18,7 @@ public class Driver
 	
 	public Driver() throws Exception {
 		bank = new Bank();
+		bankruptPlayers = new ArrayList<String>();
 		input = new Scanner(System.in);
 		runMenu();		
 	}
@@ -285,7 +286,7 @@ public class Driver
 			bank.setStockValue("Shipping", shippingNew);
 			bank.setStockValue("Stores", storesNew);
 		}
-            System.out.println(finale());
+            System.out.println(finalResults()+ "\n" +getBankruptResults());
 	}
 
 	public void addPlayer() throws Exception 
@@ -683,7 +684,7 @@ public class Driver
 		}
 	}
 	
-	public String finale() {
+	public String finalResults() {
 
 		String str = "";
 		if (players.size() > 0) {
