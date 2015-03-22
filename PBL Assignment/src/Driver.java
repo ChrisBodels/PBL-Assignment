@@ -69,7 +69,9 @@ public class Driver
 		return option;
 	}
 
-
+	/*
+	 * This method controls the whole loop of options
+ 	 */
 
 	private void runMenu() throws Exception {
 		int option = mainMenu();
@@ -103,10 +105,10 @@ public class Driver
 					input.nextLine(); 
 
 
-					System.out.println("\f");
-					option = mainMenu();
+					System.out.println("\f"); //clear the terminal window
+					option = mainMenu(); // this displays the main menu again
 				}
-
+				// option 0 was chosen, so the program is exiting
 				System.out.println("Exiting... bye");
 				System.exit(0);
 				inputOk = true;
@@ -119,7 +121,11 @@ public class Driver
 		}while(!inputOk);
 
 	}
-	
+	/**
+	 * Round menu, a 'sub' main menu, as to what you want to do in the game when the 
+	 * players round comes.
+	 * @return		the users menu choice.
+	 */
 	private int roundMenu()
 	{
 		System.out.println("  1) Buy shares");
@@ -309,7 +315,10 @@ public class Driver
 		}
             System.out.println(finalResults()+ "\n" +getBankruptResults());
 	}
-
+	/**
+	 * This method adds players to the game.
+	 * @throws Exception
+	 */
 	public void addPlayer() throws Exception 
 	{
 		System.out.println("Please enter the amount of players");
@@ -345,7 +354,11 @@ public class Driver
 		}	  
 		mainRound();
 	}
-	
+	/**
+	 * A menu for buying or selling the stocks.
+	 * @param buyOrSell
+	 * @return		the users menu choice.
+	 */
 	private int chooseStockMenu(String buyOrSell)
 	{
 		System.out.println("What type of stock would you like to " + buyOrSell + "?");
@@ -377,6 +390,7 @@ public class Driver
 	 * the appropriate stocks/funds to carry out the action.
 	 * -Chris
 	 */
+	
 	public void chooseStock(String buyOrSell, Player currentPlayer)
 	{
 		if(buyOrSell == "buy")
@@ -439,7 +453,12 @@ public class Driver
 		}
 		
 	}
-	
+	/**
+	 * This method allows the player to buy or sell any of the stocks they own.
+	 * @param stockType
+	 * @param buyOrSell
+	 * @param currentPlayer
+	 */
 	private int chooseAmountMenu(String buyOrSell)
 	{
 		//May want to add a 0 option here to allow the user to back out, we'll see.
@@ -555,6 +574,12 @@ public class Driver
 	 * No validation yet either
 	 * -Chris
 	 */
+	 /**
+	 * This method allows the user/players to buy stock.
+	 * @param stockType
+	 * @param amount
+	 * @param currentPlayer
+	 */
 	public void buyStock(String stockType, int amount, Player currentPlayer)
 	{
 		if(stockType == "Motors")
@@ -610,6 +635,12 @@ public class Driver
 	 * No validation yet either 
 	 * -Chris
 	 */
+	 /**
+	 * This method allows the players to sell their Stocks.
+	 * @param stockType
+	 * @param amount
+	 * @param currentPlayer
+	 */
 	public void sellStock(String stockType, int amount, Player currentPlayer)
 	{
 		if(stockType == "Motors")
@@ -657,7 +688,10 @@ public class Driver
 			}
 		}
 	}
-	
+	/**
+	 * This method allows the user to load the scores from previous game.
+	 * @throws Exception
+	 */
 	public void lastScore() throws Exception
 	{
 		bank.load();
@@ -707,11 +741,14 @@ public class Driver
 		input.nextLine(); 
 
 		
-		System.out.println("\f");
+		System.out.println("\f");//clears the terminal window
 		players.clear();
 		runMenu();
 	}
-	
+	/**
+	 * This method removes a player that goes bankrupt.
+	 * @param currentPlayer
+	 */
 	public void removeBankruptPlayer(Player currentPlayer) {
 
 		if (currentPlayer.getBalance() <= 0) {
@@ -732,7 +769,10 @@ public class Driver
 			return str;
 		}
 	}
-	
+	/**
+	 * This method shows the final results of players for this game.
+	 * @return
+	 */
 	public String finalResults() {
 
 		String str = "";
