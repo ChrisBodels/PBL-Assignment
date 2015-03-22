@@ -690,7 +690,7 @@ public class Driver
 			for (Player currentPlayer : players)
 				str += (currentPlayer.getUserName()
 						+ " ended the game with a balance of £" + currentPlayer
-						.getBalance())+ "\n";
+						.getBalance())+ ".\n";
 			return str;
 
 		} else {
