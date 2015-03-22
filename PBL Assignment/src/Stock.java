@@ -1,5 +1,5 @@
 /**
- * Description of Class.
+ * This is the stocks class, it holds crucial information about the stocks.
  * 
  * @author Chris, David, Patrick, Brian, Igor 
  */
@@ -41,7 +41,10 @@ public class Stock {
 			this.stockValue = stockValue;
 		}
 	}
-	
+	/**
+	 * This builds a string of all the information that this class holds, then it displays it in a neat format of the object state.
+	 * @return  's the details of a specific stock. 
+	 */
 	public String toString()
 	{
 		return "Stock Type: " + stockType + "/nStock Amount: " + stockAmount + "/nStock Value: " + stockValue;
