@@ -156,12 +156,12 @@ public class Driver
 
 			for (Player currentPlayer : players) {
 				bank.generateCardIndex(currentPlayer);
-				bank.removeCard(currentPlayer);
-				if (currentPlayer.getLoanStatus())// THIS IS NEW, also need
+				if (currentPlayer.getLoanStatus() == true && currentPlayer.getBalance() > 20)// THIS IS NEW, also need
 													// validation in here
 				{
 					currentPlayer.setBalanceDown(20);
 				}
+				bank.removeCard(currentPlayer);
 				// setVariables(currentPlayer,motorsNew ,shippingNew ,steelNew
 				// ,storesNew);
 				if (bank.getStockType(currentPlayer) == "Motors") {
