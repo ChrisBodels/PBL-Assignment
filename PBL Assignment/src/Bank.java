@@ -16,7 +16,7 @@ public class Bank {
 	private ArrayList<Player> players;
 	private ArrayList<Card> cards;
 	private ArrayList<Integer> randomNumber;
-	Random randomGenerator = new Random();
+	private Random randomGenerator;
 	private ArrayList<Player> bankruptPlayers, highScore;//new for skip turn - Paddy
 	
 	
@@ -36,6 +36,7 @@ public class Bank {
 		randomNumber = new ArrayList<Integer>();
 		bankruptPlayers = new ArrayList<Player>();// new for skip turn - Paddy
 		highScore = new ArrayList<Player>();//moved to bank from driver - Paddy
+		randomGenerator = new Random();
 		
 		initialiseCards();
 	
