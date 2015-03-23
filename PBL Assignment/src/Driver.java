@@ -474,31 +474,94 @@ public class Driver
 			switch(option)
 			{
 				case 1:
-					buyStock(stockType, 1, currentPlayer);
+					if(bank.getStockAmount(stockType) >= 1 && currentPlayer.getBalance() >= bank.getStockPrice(stockType))
+					{
+						buyStock(stockType, 1, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 2:
-					buyStock(stockType, 2, currentPlayer);
+					if(bank.getStockAmount(stockType) >= 2 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*2)
+					{
+						buyStock(stockType, 2, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 3:
-					buyStock(stockType, 3, currentPlayer);
+					if(bank.getStockAmount(stockType) >= 3 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*3)
+					{
+						buyStock(stockType, 3, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 4:
-					buyStock(stockType, 4, currentPlayer);
+					if(bank.getStockAmount(stockType) >= 4 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*4)
+					{
+						buyStock(stockType, 4, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 5:
-					buyStock(stockType, 5, currentPlayer);
+					if(bank.getStockAmount(stockType) >= 5 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*5)
+					{
+						buyStock(stockType, 5, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 6:
-					buyStock(stockType, 10, currentPlayer);
+					if(bank.getStockAmount(stockType) >= 10 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*10)
+					{
+						buyStock(stockType, 10, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 7:
-					buyStock(stockType, 15, currentPlayer);
+					if(bank.getStockAmount(stockType) >= 15 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*15)
+					{
+						buyStock(stockType, 15, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 8:
-					buyStock(stockType, 20, currentPlayer);	
+					if(bank.getStockAmount(stockType) >= 20 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*20)
+					{
+						buyStock(stockType, 20, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 9:
-					buyStock(stockType, 25, currentPlayer);
+					if(bank.getStockAmount(stockType) >= 25 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*25)
+					{
+						buyStock(stockType, 25, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 			}
 		}
@@ -507,31 +570,94 @@ public class Driver
 			switch(option)
 			{
 				case 1:
-					sellStock(stockType, 1, currentPlayer);
+					if(currentPlayer.getStocks(stockType) >= 1)
+					{
+						sellStock(stockType, 1, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 2:
-					sellStock(stockType, 2, currentPlayer);
+					if(currentPlayer.getStocks(stockType) >= 2)
+					{
+						sellStock(stockType, 2, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 3:
-					sellStock(stockType, 3, currentPlayer);
+					if(currentPlayer.getStocks(stockType) >= 3)
+					{
+						sellStock(stockType, 3, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 4:
-					sellStock(stockType, 4, currentPlayer);
+					if(currentPlayer.getStocks(stockType) >= 4)
+					{
+						sellStock(stockType, 4, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 5:
-					sellStock(stockType, 5, currentPlayer);
+					if(currentPlayer.getStocks(stockType) >= 5)
+					{
+						sellStock(stockType, 5, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 6:
-					sellStock(stockType, 10, currentPlayer);
+					if(currentPlayer.getStocks(stockType) >= 10)
+					{
+						sellStock(stockType, 10, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 7:
-					sellStock(stockType, 15, currentPlayer);
+					if(currentPlayer.getStocks(stockType) >= 15)
+					{
+						sellStock(stockType, 15, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 8:
-					sellStock(stockType, 20, currentPlayer);	
+					if(currentPlayer.getStocks(stockType) >= 20)
+					{
+						sellStock(stockType, 20, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 				case 9:
-					sellStock(stockType, 25, currentPlayer);
+					if(currentPlayer.getStocks(stockType) >= 25)
+					{
+						sellStock(stockType, 25, currentPlayer);
+					}
+					else
+					{
+						menuCall(buyOrSell);
+					}
 				break;
 			}
 		}
@@ -804,6 +930,24 @@ public void setUpdatedStockValue() {
 			bank.setStockValue("Steel", steelNew);
 			bank.setStockValue("Shipping", shippingNew);
 			bank.setStockValue("Stores", storesNew);
+		}
+	}
+	
+	public void menuCall(String buyOrSell)
+	{
+		if(buyOrSell == "buy")
+		{
+			System.out.println("Not enough of the chosen stock type currently in bank or not enough funds. Purchase cancelled");
+			System.out.println("Press any key to continue...");
+			input.nextLine();
+			input.nextLine();
+		}
+		else
+		{
+			System.out.println("Not enough of the chosen stock type currently owned. Selling cancelled");
+			System.out.println("Press any key to continue...");
+			input.nextLine();
+			input.nextLine();
 		}
 	}
 
