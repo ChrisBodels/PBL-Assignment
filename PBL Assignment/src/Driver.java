@@ -765,10 +765,10 @@ public class Driver
 	 *
 	 */
 public void setUpdatedStockValue() {
-		int motorsNew = bank.getStockPrice("Motors");
-		int shippingNew = bank.getStockPrice("Shipping");
-		int steelNew = bank.getStockPrice("Steel");
-		int storesNew = bank.getStockPrice("Stores");
+		int motorsNew = 0;
+		int shippingNew = 0;
+		int steelNew = 0;
+		int storesNew = 0;
 
 		for (Player currentPlayer : players) {
 			if (bank.getStockType(currentPlayer) == "Motors") {
@@ -806,6 +806,7 @@ public void setUpdatedStockValue() {
 			bank.setStockValue("Stores", storesNew);
 		}
 	}
+
 
 	
  	
