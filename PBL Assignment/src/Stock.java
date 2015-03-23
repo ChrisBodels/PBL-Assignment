@@ -27,10 +27,7 @@ public class Stock {
 	
 	public void setStockAmount(int stockAmount)
 	{
-		if(stockAmount >= 0 && stockAmount <= 28)
-		{
 			this.stockAmount += stockAmount;
-		}
 	}
 	
 	public int getStockValue()
@@ -40,11 +37,21 @@ public class Stock {
 	
 	public void setStockValue(int stockValue)
 	{
-		if(stockValue >= 0 && stockValue <=20)
+		int i = this.stockValue += stockValue;
+		if(i >= 0 && i <= 20)
 		{
-			this.stockValue = stockValue;
+			this.stockValue += stockValue;
+		}
+		else if(i < 0)
+		{
+			this.stockValue = 0;
+		}
+		else if(i > 20)
+		{
+			this.stockValue = 20;
 		}
 	}
+	
 	/**
 	 * This builds a string of all the information that this class holds, then it displays it in a neat format of the object state.
 	 * @return  's the details of a specific stock. 
