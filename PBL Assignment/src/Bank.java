@@ -292,6 +292,7 @@ public class Bank {
 		} else if (stockType == "Stores") {
 			stores.setStockValue(amount);
 		}
+	}
     
 	/**
 	 * This method shows the updated value of stocks. 
