@@ -169,51 +169,16 @@ public class Driver
 		while (roundNumber < 13) {
 			System.out.println("Now beginning round number " + roundNumber);
 			players = bank.getPlayers();
-
-			int motorsNew = bank.getStockPrice("Motors");
-			int shippingNew = bank.getStockPrice("Shipping");
-			int steelNew = bank.getStockPrice("Steel");
-			int storesNew = bank.getStockPrice("Stores");
-
+			
 			for (Player currentPlayer : players) {
 				bank.generateCardIndex(currentPlayer);
-				if (currentPlayer.getLoanStatus() == true && currentPlayer.getBalance() > 20)// THIS IS NEW, also need
-													// validation in here
+					bank.removeCard(currentPlayer);
+				if (currentPlayer.getLoanStatus() == true && currentPlayer.getBalance() > 20)// THIS IS NEW, also need													// validation in here
 				{
 					currentPlayer.setBalanceDown(20);
 				}
-				bank.removeCard(currentPlayer);
-				// setVariables(currentPlayer,motorsNew ,shippingNew ,steelNew
-				// ,storesNew);
-				if (bank.getStockType(currentPlayer) == "Motors") {
-					motorsNew += bank.cardValue(currentPlayer);
+			
 
-				} else if (bank.getStockType(currentPlayer) == "Shipping") {
-
-					shippingNew += bank.cardValue(currentPlayer);
-
-				} else if (bank.getStockType(currentPlayer) == "Steel") {
-
-					steelNew += bank.cardValue(currentPlayer);
-
-				} else if (bank.getStockType(currentPlayer) == "Bull") {
-
-					motorsNew += 4;
-					shippingNew += 4;
-					steelNew += 4;
-					storesNew += 4;
-
-				} else if (bank.getStockType(currentPlayer) == "Stores") {
-
-					storesNew += bank.cardValue(currentPlayer);
-				} else if (bank.getStockType(currentPlayer) == "Bear") {
-
-					motorsNew += -4;
-					shippingNew += -4;
-					steelNew += -4;
-					storesNew += -4;
-
-				}
 
 				{
 					System.out.println(currentPlayer.getUserName() + "'s turn");
@@ -312,10 +277,7 @@ public class Driver
 			}
 			bank.initialiseCards();//NEW replaced old one//
 			roundNumber++;
-			bank.setStockValue("Motors", motorsNew);
-			bank.setStockValue("Steel", steelNew);
-			bank.setStockValue("Shipping", shippingNew);
-			bank.setStockValue("Stores", storesNew);
+			setUpdatedStockValue();
 		}
             System.out.println(finalResults()+ "\n" +getBankruptResults());
 	}
@@ -798,6 +760,54 @@ public class Driver
 		}
 
 	}
+/**
+	 * This method updates the stock value in the bank in accordance
+	 * with the value of the cards drawn from the deck.
+	 *
+	 */
+public void setUpdatedStockValue() {
+		int motorsNew = bank.getStockPrice("Motors");
+		int shippingNew = bank.getStockPrice("Shipping");
+		int steelNew = bank.getStockPrice("Steel");
+		int storesNew = bank.getStockPrice("Stores");
+
+		for (Player currentPlayer : players) {
+			if (bank.getStockType(currentPlayer) == "Motors") {
+				motorsNew += bank.cardValue(currentPlayer);
+
+			} else if (bank.getStockType(currentPlayer) == "Shipping") {
+
+				shippingNew += bank.cardValue(currentPlayer);
+
+			} else if (bank.getStockType(currentPlayer) == "Steel") {
+
+				steelNew += bank.cardValue(currentPlayer);
+
+			} else if (bank.getStockType(currentPlayer) == "Bull") {
+
+				motorsNew += 4;
+				shippingNew += 4;
+				steelNew += 4;
+				storesNew += 4;
+
+			} else if (bank.getStockType(currentPlayer) == "Stores") {
+
+				storesNew += bank.cardValue(currentPlayer);
+			} else if (bank.getStockType(currentPlayer) == "Bear") {
+
+				motorsNew += -4;
+				shippingNew += -4;
+				steelNew += -4;
+				storesNew += -4;
+
+			}
+			bank.setStockValue("Motors", motorsNew);
+			bank.setStockValue("Steel", steelNew);
+			bank.setStockValue("Shipping", shippingNew);
+			bank.setStockValue("Stores", storesNew);
+		}
+	}
+
 	
  	
 }
