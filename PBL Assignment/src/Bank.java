@@ -14,11 +14,9 @@ public class Bank {
 	private Stock motors, shipping, steel, stores;
 	
 	private ArrayList<Player> players;
-	private ArrayList<Card> cards;
-	private ArrayList<Card> removeCards;//new
+	private ArrayList<Card> cards, removeCards;
 	Random randomGenerator = new Random();
-	private ArrayList<Player> bankruptPlayers;//new for skip turn - Paddy
-	private ArrayList<Player> highScore;// moved to bank from driver - Paddy
+	private ArrayList<Player> bankruptPlayers, highScore;//new for skip turn - Paddy
 	
 	
 	/**
