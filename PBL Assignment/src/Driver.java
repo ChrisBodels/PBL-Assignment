@@ -169,10 +169,10 @@ public class Driver
 		while (roundNumber < 13) {
 			System.out.println("Now beginning round number " + roundNumber);
 			players = bank.getPlayers();
+			bank.generateCardIndex();
 			
 			for (Player currentPlayer : players) {
-				bank.generateCardIndex(currentPlayer);
-					bank.removeCard(currentPlayer);
+			
 				if (currentPlayer.getLoanStatus() == true && currentPlayer.getBalance() > 20)// THIS IS NEW, also need													// validation in here
 				{
 					currentPlayer.setBalanceDown(20);
@@ -275,7 +275,6 @@ public class Driver
 					}while(!inputOk);
 				}
 			}
-			bank.initialiseCards();//NEW replaced old one//
 			roundNumber++;
 			setUpdatedStockValue();
 		}
