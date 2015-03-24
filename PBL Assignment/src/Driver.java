@@ -11,8 +11,7 @@ public class Driver
 {
 	private Scanner input;
 	private Bank bank;
-	private ArrayList<Player> players;
-	private ArrayList<Player> highScore;
+	private ArrayList<Player> players, highScore;
 	private ArrayList<String> bankruptPlayers;
 	
 	/**
@@ -21,7 +20,8 @@ public class Driver
 	 * @throws Exception
 	 */
 	
-	public Driver() throws Exception {
+	public Driver() throws Exception 
+	{
 		bank = new Bank();
 		bankruptPlayers = new ArrayList<String>();
 		input = new Scanner(System.in);
@@ -37,14 +37,14 @@ public class Driver
 	public static void main (String args[]) throws Exception
 	{
 		Driver app = new Driver();
-		
 	}
 	
 	/**
 	 * This is the starting menu for the driver. 
 	 * @return
 	 */
-	private int mainMenu() {
+	private int mainMenu()
+	{
 		System.out.println(" ___________________________________________\n" + 
                 "|                                           |\n" + 
                 "|  Welcome to the Shares and Stocks!        |\n" +
@@ -58,11 +58,12 @@ public class Driver
 		
 		boolean inputOk = false;
 		int option = 0;
-		do{
-			try{
+		do
+		{
+			try
+			{
 				option = input.nextInt();
-				inputOk = true;
-				
+				inputOk = true;	
 			}
 			catch(Exception e)
 			{
@@ -76,38 +77,37 @@ public class Driver
 	/*
 	 * This method controls the whole loop of options
  	 */
-
-	private void runMenu() throws Exception {
+	private void runMenu() throws Exception 
+	{
 		int option = mainMenu();
 		boolean inputOk = false;
 		do
 		{
 			try
 			{
-				while (option != 0) {
-					// clear the terminal window
+				while (option != 0) 
+				{
 					System.out.println("\f");
-
-					switch (option) {
-					case 1:
-						addPlayer();
+					switch (option) 
+					{
+						case 1:
+							addPlayer();
 						break;
-					case 2:		try
-					{lastScore();}
-					catch (Exception e)
-					{System.out.println("Error reading from file: " + e);}
-					break;
+						case 2:		
+							try
+								{lastScore();}
+							catch (Exception e)
+							{System.out.println("Error reading from file: " + e);}
+						break;
 
-					default:
-						System.out.println("Invalid option entered: " + option);
+						default:
+							System.out.println("Invalid option entered: " + option);
 						break;
 					}
-
 
 					System.out.println("\nPress any key to continue...");
 					input.nextLine();
 					input.nextLine(); 
-
 
 					System.out.println("\f"); //clear the terminal window
 					option = mainMenu(); // this displays the main menu again
@@ -144,8 +144,10 @@ public class Driver
 	
 		boolean inputOk = false;
 		int option = 0;
-		do{
-			try{
+		do
+		{
+			try
+			{
 				option = input.nextInt();
 				inputOk = true;
 				
@@ -164,121 +166,161 @@ public class Driver
 	 * Not sure on specifics yet, just doing it to get things working and working through things in my head.
 	 * -Chris
 	*/
-	public void mainRound() throws Exception {
+	public void mainRound() throws Exception 
+	{
 		int roundNumber = 1;
-		while (roundNumber < 13) {
+		while (roundNumber < 13) 
+		{
 			System.out.println("Now beginning round number " + roundNumber);
 			players = bank.getPlayers();
 			bank.generateCardIndex();
 			
-			for (Player currentPlayer : players) {
-			
-				if (currentPlayer.getLoanStatus() == true && currentPlayer.getBalance() > 20)// THIS IS NEW, also need													// validation in here
+			for (Player currentPlayer : players) 
+			{
+				System.out.println(currentPlayer.getUserName() + "'s turn");
+				if (currentPlayer.getLoanStatus() && currentPlayer.getBalance() >= 20)
 				{
 					currentPlayer.setBalanceDown(20);
+					System.out.println("You currently have a loan so £20 was automatically withdrawn from your balance");
+					System.out.println("Press any key to continue to your main round menu...");
+					input.nextLine();
+					input.nextLine();
 				}
-			
-
-
+				else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() >= 1)
 				{
-					System.out.println(currentPlayer.getUserName() + "'s turn");
-					int option = -1;
-					boolean inputOk = false;
-					do{
-						try{
-					while (option != 0) {
-						System.out.println("\f");
-						option = roundMenu();
-						switch (option) {
-						case 1:
-							chooseStock("buy", currentPlayer);
-							break;
-						case 2:
-							chooseStock("sell", currentPlayer);
-							break;
-						case 3:
-							System.out.println("\nYour current balance is £"
-									+ currentPlayer.getBalance());
-							System.out.println("\nYour current Motors stock: "
-									+ currentPlayer.getStocks("Motors"));
-							System.out.println("Your current Shipping stock: "
-									+ currentPlayer.getStocks("Shipping"));
-							System.out.println("Your current Steel stock: "
-									+ currentPlayer.getStocks("Steel"));
-							System.out.println("Your current Stores stock: "
-									+ currentPlayer.getStocks("Stores"));
-							System.out
-							.println("\nPress any key to continue...");
-							input.nextLine();
-							input.nextLine();
-							break;
-						case 4:
-							System.out
-							.println("\nMotors current stock price: £"
-									+ bank.getStockPrice("Motors"));
-							System.out
-							.println("Shipping current stock price: £"
-									+ bank.getStockPrice("Shipping"));
-							System.out.println("Steel current stock price: £"
-									+ bank.getStockPrice("Steel"));
-							System.out.println("Stores current stock price: £"
-									+ bank.getStockPrice("Stores"));
-							System.out
-							.println("\nMotors current stock amount: "
-									+ bank.getStockAmount("Motors"));
-							System.out
-							.println("Shipping current stock amount: "
-									+ bank.getStockAmount("Shipping"));
-							System.out.println("Steel current stock amount: "
-									+ bank.getStockAmount("Steel"));
-							System.out.println("Stores current stock amount: "
-									+ bank.getStockAmount("Stores"));
-							System.out
-							.println("\nPress any key to continue...");
-							input.nextLine();
-							input.nextLine();
-							break;
-						case 5:// This is currently printing out on card per
-							// user.*Dave
-							System.out
-							.println(bank.generateCard(currentPlayer));
-							System.out.println("\nPress any key to continue..");
-							input.nextLine();
-							input.nextLine();
-						break;
-						case 6:
-							currentPlayer.setLoanStatus(true);
-							currentPlayer.setBalanceUp(80);
-						break;
-						case 7:
-							//Needs validation
-							currentPlayer.setBalanceDown(100);
-							currentPlayer.setLoanStatus(false);
-						break;
-						case 8:
-							try{
-								bank.save();}
-							catch (Exception e){
-								System.out.println("Error writing to file: " + e);
-							}
-							break; // new save with exception handling
-
-						}
+					while(currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() != 0)
+					{
+						System.out.println("You do not have enough in your current balance to pay your £20 loan fee for this turn. You will have to "
+								+ "sell stocks in order to attempt to pay it.");
+						displayPlayerStockInfo(currentPlayer);
+						displayBankStockInfo();
+						chooseStock("sell", currentPlayer);
 					}
-					inputOk=true;
+					if(currentPlayer.getBalance() >= 20)
+					{
+						System.out.println("Congratulations, you have succesfully sold enough stocks to pay your loan fee for this round."
+								+ "\n £20 will be automatically removed from your balance");
+						System.out.println("Press any key to continue to your main round menu...");
+						input.nextLine();
+						input.nextLine();
+						currentPlayer.setBalanceDown(20);
+					}
+					else
+					{
+						System.out.println("Unfortunately you are bankrupt and have been eliminated from the game. Thanks for playing!");
+						System.out.println("Press any key to continue...");
+						input.nextLine();
+						input.nextLine();
+						removeBankruptPlayer(currentPlayer);
+					}
+				}
+				else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() < 1)
+				{
+					System.out.println("Unfortunately you are bankrupt and have been eliminated from the game. Thanks for playing!");
+					System.out.println("Press any key to continue...");
+					input.nextLine();
+					input.nextLine();
+					removeBankruptPlayer(currentPlayer);
+				}
+				
+				int option = -1;
+				boolean inputOk = false;
+				do
+				{
+					try
+					{
+						while (option != 0) 
+						{
+							System.out.println("\f");
+							option = roundMenu();
+							switch (option) 
+							{
+								case 1:
+									chooseStock("buy", currentPlayer);
+								break;
+								case 2:
+									chooseStock("sell", currentPlayer);
+								break;
+								case 3:
+									displayPlayerStockInfo(currentPlayer);
+								break;
+								case 4:
+									displayBankStockInfo();
+								break;
+								case 5:
+									System.out.println(bank.generateCard(currentPlayer));
+									System.out.println("\nPress any key to continue..");
+									input.nextLine();
+									input.nextLine();
+								break;
+								case 6:
+									if(!currentPlayer.getLoanStatus())
+									{
+										System.out.println("Loan taken. Your balance has been increased by £80 and you will lose £20 per"
+												+ " turn until you pay off a lump sum of £100 or go bankrupt.");
+										System.out.println("Press any key to continue..");
+										input.nextLine();
+										input.nextLine();
+										currentPlayer.setLoanStatus(true);
+										currentPlayer.setBalanceUp(80);
+									}
+									else
+									{
+										System.out.println("You already have a loan. Repay current one before taking another!");
+										System.out.println("Press any key to continue");
+										input.nextLine();
+										input.nextLine();
+									}
+								break;
+								case 7:
+									if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() >= 100)
+									{
+										System.out.println("Loan successfully paid off!");
+										System.out.println("Press any key to continue...");
+										input.nextLine();
+										input.nextLine();
+										currentPlayer.setBalanceDown(100);
+										currentPlayer.setLoanStatus(false);
+									}
+									else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 100)
+									{
+										System.out.println("You do not have sufficient funds to pay off your loan.");
+										System.out.println("Press any key to continue...");
+										input.nextLine();
+										input.nextLine();
+									}
+									else
+									{
+										System.out.println("You are not currently on loan");
+										System.out.println("Press any key to continue...");
+										input.nextLine();
+										input.nextLine();
+									}
+								break;
+								case 8:
+									try
+									{
+										bank.save();}
+									catch (Exception e)
+									{
+										System.out.println("Error writing to file: " + e);
+									}
+								break; // new save with exception handling
+							}
+						}
+						inputOk=true;
 					}
 					catch(Exception e)
 					{
 						String throwOut = input.nextLine();
 						System.out.println("Numbers expected - you entered text");
 					}
-					}while(!inputOk);
-				}
+				}while(!inputOk);
 			}
 			roundNumber++;
 			setUpdatedStockValue();
 		}
-            System.out.println(finalResults()+ "\n" +getBankruptResults());
+        System.out.println(finalResults()+ "\n" +getBankruptResults());
 	}
 	/**
 	 * This method adds players to the game.
@@ -335,7 +377,8 @@ public class Driver
 		
 		int option = 0;
 		boolean inputOk = false;
-		do{
+		do
+		{
 			try
 			{
 				option = input.nextInt();
@@ -362,9 +405,9 @@ public class Driver
 		{
 			int option = chooseStockMenu(buyOrSell);
 			String stockType = "";
-			while(option < 0 && option >= 5 )
+			while(option < 0 || option > 4 )
 			{
-				System.out.println("Invalid option entered. Please enter a valid option between 0 and 4");
+				System.out.println("Invalid option entered. Please enter a valid option between 1 and 4");
 				option = chooseStockMenu(buyOrSell);
 			}
 			if(option != 0)
@@ -391,9 +434,9 @@ public class Driver
 		{
 			int option = chooseStockMenu(buyOrSell);
 			String stockType = "";
-			while(option < 0 && option >= 5 )
+			while(option < 0 || option > 4 )
 			{
-				System.out.println("Invalid option entered. Please enter a valid option between 0 and 4");
+				System.out.println("Invalid option entered. Please enter a valid option between 1 and 4");
 				option = chooseStockMenu(buyOrSell);
 			}
 			if(option != 0)
@@ -440,7 +483,8 @@ public class Driver
 		
 		int option = 0;
 		boolean inputOk = false;
-		do{
+		do
+		{
 			try
 			{
 				option = input.nextInt();
@@ -464,7 +508,7 @@ public class Driver
 	public void chooseAmount(String stockType, String buyOrSell, Player currentPlayer)
 	{
 		int option = chooseAmountMenu(buyOrSell);
-		while(option < 1 && option > 9)
+		while(option < 1 || option > 9)
 		{
 			System.out.println("Invalid option entered. Please enter a valid option between 1 and 9");
 			option = chooseAmountMenu(buyOrSell);
@@ -845,22 +889,24 @@ public class Driver
 	 * This method removes a player that goes bankrupt.
 	 * @param currentPlayer
 	 */
-	public void removeBankruptPlayer(Player currentPlayer) {
-
-		if (currentPlayer.getBalance() <= 0) {
+	public void removeBankruptPlayer(Player currentPlayer) 
+	{
 			String userName = currentPlayer.getUserName();
 			bankruptPlayers.add(userName);
 			players.remove(currentPlayer);
-		}
 	}
 
-	public String getBankruptResults() {
+	public String getBankruptResults() 
+	{
 		String str = "";
-		if (bankruptPlayers.size() > 0) {
+		if (bankruptPlayers.size() > 0) 
+		{
 			for (int i = 0; i <= bankruptPlayers.size(); i++)
-				str += (bankruptPlayers.get(i) + " was kicked from the game as they were bankrupt." + "\n");
+			str += (bankruptPlayers.get(i) + " was kicked from the game as they were bankrupt." + "\n");
 			return str;
-		} else {
+		} 
+		else 
+		{
 			str += ("No one finished the game bankrupt.");
 			return str;
 		}
@@ -872,65 +918,73 @@ public class Driver
 	public String finalResults() {
 
 		String str = "";
-		if (players.size() > 0) {
+		if (players.size() > 0) 
+		{
 			for (Player currentPlayer : players)
+			{
 				str += (currentPlayer.getUserName()
 						+ " ended the game with a balance of £" + currentPlayer
 						.getBalance())+ ".\n";
+			}
 			return str;
-
-		} else {
+		} 
+		else 
+		{
 			str += ("No one finished the game.");
 			return str;
 		}
 
 	}
-/**
+	
+	/**
 	 * This method updates the stock value in the bank in accordance
 	 * with the value of the cards drawn from the deck.
 	 *
 	 */
-public void setUpdatedStockValue() {
+	public void setUpdatedStockValue() 
+	{
 		int motorsNew = 0;
 		int shippingNew = 0;
 		int steelNew = 0;
 		int storesNew = 0;
 
-		for (Player currentPlayer : players) {
-			if (bank.getStockType(currentPlayer) == "Motors") {
+		for (Player currentPlayer : players) 
+		{
+			if (bank.getStockType(currentPlayer) == "Motors") 
+			{
 				motorsNew += bank.cardValue(currentPlayer);
-
-			} else if (bank.getStockType(currentPlayer) == "Shipping") {
-
+			} 
+			else if (bank.getStockType(currentPlayer) == "Shipping") 
+			{
 				shippingNew += bank.cardValue(currentPlayer);
-
-			} else if (bank.getStockType(currentPlayer) == "Steel") {
-
+			} 
+			else if (bank.getStockType(currentPlayer) == "Steel")
+			{
 				steelNew += bank.cardValue(currentPlayer);
-
-			} else if (bank.getStockType(currentPlayer) == "Bull") {
-
+			} 
+			else if (bank.getStockType(currentPlayer) == "Bull") 
+			{
 				motorsNew += 4;
 				shippingNew += 4;
 				steelNew += 4;
 				storesNew += 4;
-
-			} else if (bank.getStockType(currentPlayer) == "Stores") {
-
+			} 
+			else if (bank.getStockType(currentPlayer) == "Stores") 
+			{
 				storesNew += bank.cardValue(currentPlayer);
-			} else if (bank.getStockType(currentPlayer) == "Bear") {
-
-				motorsNew += -4;
-				shippingNew += -4;
-				steelNew += -4;
-				storesNew += -4;
-
+			} 
+			else if (bank.getStockType(currentPlayer) == "Bear") 
+			{
+				motorsNew -= 4;
+				shippingNew -= 4;
+				steelNew -= 4;
+				storesNew -= 4;
 			}
-			bank.setStockValue("Motors", motorsNew);
-			bank.setStockValue("Steel", steelNew);
-			bank.setStockValue("Shipping", shippingNew);
-			bank.setStockValue("Stores", storesNew);
 		}
+		bank.setStockValue("Motors", motorsNew);
+		bank.setStockValue("Steel", steelNew);
+		bank.setStockValue("Shipping", shippingNew);
+		bank.setStockValue("Stores", storesNew);
 	}
 	
 	public void menuCall(String buyOrSell)
@@ -950,8 +1004,46 @@ public void setUpdatedStockValue() {
 			input.nextLine();
 		}
 	}
-
-
+	
+	public void displayPlayerStockInfo(Player currentPlayer)
+	{
+		System.out.println("\nYour current balance is £"
+				+ currentPlayer.getBalance());
+		System.out.println("\nYour current Motors stock: "
+				+ currentPlayer.getStocks("Motors"));
+		System.out.println("Your current Shipping stock: "
+				+ currentPlayer.getStocks("Shipping"));
+		System.out.println("Your current Steel stock: "
+				+ currentPlayer.getStocks("Steel"));
+		System.out.println("Your current Stores stock: "
+				+ currentPlayer.getStocks("Stores"));
+		System.out.println("\nPress any key to continue...");
+		input.nextLine();
+		input.nextLine();
+	}
+	
+	public void displayBankStockInfo()
+	{
+		System.out.println("\nMotors current stock price: £"
+				+ bank.getStockPrice("Motors"));
+		System.out.println("Shipping current stock price: £"
+				+ bank.getStockPrice("Shipping"));
+		System.out.println("Steel current stock price: £"
+				+ bank.getStockPrice("Steel"));
+		System.out.println("Stores current stock price: £"
+				+ bank.getStockPrice("Stores"));
+		System.out.println("\nMotors current stock amount: "
+				+ bank.getStockAmount("Motors"));
+		System.out.println("Shipping current stock amount: "
+				+ bank.getStockAmount("Shipping"));
+		System.out.println("Steel current stock amount: "
+				+ bank.getStockAmount("Steel"));
+		System.out.println("Stores current stock amount: "
+				+ bank.getStockAmount("Stores"));
+		System.out.println("\nPress any key to continue...");
+		input.nextLine();
+		input.nextLine();
+	}
 	
  	
 }
