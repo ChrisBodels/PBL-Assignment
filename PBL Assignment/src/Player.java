@@ -17,16 +17,31 @@ public class Player {
 	public Player(String userName)
 	{
 		this.balance = 80;
-		this.loanStatus = false;
-		this.bankruptStatus = false;
-		if(userName.length() >= 3 && userName.length() <=10)
-		{
 		this.userName = userName;
-		}
-		else
+		this.loanStatus = false;
+		if(userName.length() < 3 || userName.length()<10 )
 		{
-			this.userName = userName.substring(0, 9);
+			int counter = 1;
+			int i = userName.length();
+			if(i > 10)
+			{
+				this.userName = userName.substring(0, 9);
+				
+			}
+			else if(i <= 10 && i >3)
+			{
+				this.userName = userName;
+			}
+			else if (i < 3)
+			{
+				System.out.println("Invalid userName - Username autoassigned");
+				this.userName = "ErrPlayer" + counter;
+				
+				
+			}
+			
 		}
+		
 		
 		this.card = 0;//this really stores the index number for the card
 		
