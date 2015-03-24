@@ -160,4 +160,13 @@ public class Player {
 			return -1;
 		}
 	}
+	
+	public int getTotalStocks()
+	{
+		int i = getStocks("Motors");
+		i += getStocks("Shipping");
+		i += getStocks("Steel");
+		i += getStocks("Stores");
+		return i;
+	}
 }
