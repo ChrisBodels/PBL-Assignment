@@ -5,9 +5,8 @@
  */
 public class Stock {
 
-	String stockType;
-	int stockAmount;
-	int stockValue;
+	private String stockType;
+	private int stockAmount, stockValue;
 	
 	/**
 	 * Constructor for objects of class Stock.
