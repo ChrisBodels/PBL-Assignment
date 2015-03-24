@@ -6,7 +6,7 @@
 public class Player {
 
 	private int balance, card;
-	private boolean loanStatus;
+	private boolean loanStatus, bankruptStatus;
 	private String userName;
 	private Stock playerMotors, playerShipping, playerSteel, playerStores;
 	
@@ -18,6 +18,7 @@ public class Player {
 	{
 		this.balance = 80;
 		this.loanStatus = false;
+		this.bankruptStatus = false;
 		if(userName.length() >= 3 && userName.length() <=10)
 		{
 		this.userName = userName;
@@ -44,6 +45,22 @@ public class Player {
 	public Player()
 	{
 		
+	}
+	
+	public boolean getBankruptStatus(){
+		
+		return bankruptStatus;
+		
+	}
+	
+	public void setBankruptStatus(boolean bankruptStatus)
+	{
+		if (bankruptStatus == true){
+			this.bankruptStatus = bankruptStatus;
+		}
+		else{
+			this.bankruptStatus = false;
+		}
 	}
 	
 	public void setCard(int card) //sets the card to that of the index number
