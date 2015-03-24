@@ -17,33 +17,11 @@ public class Player {
 	public Player(String userName)
 	{
 		this.balance = 80;
-		this.userName = userName;
 		this.loanStatus = false;
-		if(userName.length() < 3 || userName.length()<10 )
-		{
-			int counter = 1;
-			int i = userName.length();
-			if(i > 10)
-			{
-				this.userName = userName.substring(0, 9);
-				
-			}
-			else if(i <= 10 && i >3)
-			{
-				this.userName = userName;
-			}
-			else if (i < 3)
-			{
-				System.out.println("Invalid userName - Username autoassigned");
-				this.userName = "ErrPlayer" + counter;
-				
-				
-			}
-			
-		}
+		this.bankruptStatus = false;
+		this.userName = userName;
 		
-		
-		this.card = 0;//this really stores the index number for the card
+		this.card = 0;
 		
 		playerMotors = new Stock("Motors");
 		playerShipping = new Stock("Shipping");
@@ -60,17 +38,6 @@ public class Player {
 	public Player()
 	{
 		
-	}
-	
-	public boolean getBankruptStatus(){
-		
-		return this.bankruptStatus;
-		
-	}
-	
-	public void setBankruptStatus(boolean bankruptStatus)
-	{
-		this.bankruptStatus = bankruptStatus;
 	}
 	
 	public void setCard(int card) //sets the card to that of the index number
@@ -92,47 +59,12 @@ public class Player {
 	{
 		return this.balance;
 	}
-	/**
-	 * This method sets the user name when entered. 
-	 * @param userName
-	 */
-	public void setUsername(String userName)
-	{
-		if(userName.length() < 3 || userName.length()<10 )
-		{
-			int counter = 1;
-			int i = userName.length();
-			if(i > 10)
-			{
-				this.userName = userName.substring(0, 9);
-				
-			}
-			else if(i <= 10 && i >3)
-			{
-				this.userName = userName;
-			}
-			else if (i < 3)
-			{
-				System.out.println("Invalid userName - Username autoassigned");
-				this.userName = "ErrPlayer" + counter;
-				
-				
-			}
-			
-		}
-	}
-	/**
-	 * This method will increase the balance.
-	 * @param balance
-	 */
+	
 	public void setBalanceUp(int balance)
 	{
 		this.balance += balance; 
 	}
-	/**
-	 * This method will decrease the balance.
-	 * @param balance
-	 */
+	
 	public void setBalanceDown(int balance)
 	{
 		this.balance -= balance; 
@@ -147,6 +79,17 @@ public class Player {
 	{
 		return this.loanStatus;
 	}
+	
+	public boolean getBankruptStatus()
+	{
+		return this.bankruptStatus;
+	}
+	
+	public void setBankruptStatus(boolean bankruptStatus)
+	{
+		this.bankruptStatus = bankruptStatus;
+	}
+	
 	/**
 	 * This method will change the amount of stocks up if the player has bought stocks. 
 	 * @param stockType
@@ -166,11 +109,12 @@ public class Player {
 		{
 			playerSteel.setStockAmount(amount);
 		}
-		else if(stockType == "Shipping")
+		else if(stockType == "Stores")
 		{
 			playerStores.setStockAmount(amount);
 		}
 	}
+	
 	/**
 	 * This method will change the amount of stocks down if the player has sold stocks. 
 	 * @param stockType
@@ -219,6 +163,7 @@ public class Player {
 			return -1;
 		}
 	}
+	
 	/**
 	 * In this method we are gathering all the stocks the current player has.
 	 * @return Stocks. The amount of stocks as type int. 
@@ -232,3 +177,4 @@ public class Player {
 		return i;
 	}
 }
+
