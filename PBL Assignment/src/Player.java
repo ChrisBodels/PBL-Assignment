@@ -70,12 +70,7 @@ public class Player {
 	
 	public void setBankruptStatus(boolean bankruptStatus)
 	{
-		if (bankruptStatus == true){
-			this.bankruptStatus = bankruptStatus;
-		}
-		else{
-			this.bankruptStatus = false;
-		}
+		this.bankruptStatus = bankruptStatus;
 	}
 	
 	public void setCard(int card) //sets the card to that of the index number
