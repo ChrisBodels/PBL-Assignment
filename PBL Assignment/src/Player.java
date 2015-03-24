@@ -45,6 +45,7 @@ public class Player {
 	{
 		
 	}
+	
 	public void setCard(int card) //sets the card to that of the index number
 	{
 		this.card = card;
