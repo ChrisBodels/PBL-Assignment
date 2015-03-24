@@ -508,6 +508,8 @@ public class Driver
 	public void chooseAmount(String stockType, String buyOrSell, Player currentPlayer)
 	{
 		int option = chooseAmountMenu(buyOrSell);
+		while(option != 0)
+		{
 		while(option < 1 || option > 9)
 		{
 			System.out.println("Invalid option entered. Please enter a valid option between 1 and 9");
@@ -705,6 +707,7 @@ public class Driver
 				break;
 			}
 		}
+	}
 	}
 	
 	/*
