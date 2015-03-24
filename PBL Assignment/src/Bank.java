@@ -40,17 +40,25 @@ public class Bank {
 		initialiseCards();
 	
 	}
-	
+	/** 
+	 * This method gets the players that is in the array list.
+	 * @return The players in the array. 
+	 */
 	public ArrayList<Player> getPlayers()
 	{
 		return players;
 	}
-	
+	/** 
+	 * This method adds the player into the array list when enterd. 
+	 * @param player
+	 */
 	public void add (Player player)
 	{
 		players.add(player);
 	}
-	
+	/**
+	 * This method populates the card array and the random number array.
+	 */
 	public void initialiseCards()//UPDATED!!!!
 	{
 		card0 = new Card("Motors", -4);
@@ -254,7 +262,11 @@ public class Bank {
 			stores.setStockAmount(amount);
 		}
 	}
-	
+	/**
+	 * This method sets the value of all the stocks when updated. 
+	 * @param stockType
+	 * @param amount
+	 */
 	public void setStockValue(String stockType, int amount) {
 		if (stockType == "Motors") {
 			motors.setStockValue(amount);
@@ -269,7 +281,7 @@ public class Bank {
     
 	/**
 	 * This method shows the updated value of stocks. 
-	 * @return
+	 * @return the updated values as type string.
 	 */
 	public String updatedStockValue(){
     		String str = "";
