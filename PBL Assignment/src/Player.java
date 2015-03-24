@@ -98,9 +98,27 @@ public class Player {
 	 */
 	public void setUsername(String userName)
 	{
-		if(userName.length() >= 3 && userName.length() <=10)
+		if(userName.length() < 3 || userName.length()<10 )
 		{
-		this.userName = userName;
+			int counter = 1;
+			int i = userName.length();
+			if(i > 10)
+			{
+				this.userName = userName.substring(0, 9);
+				
+			}
+			else if(i <= 10 && i >3)
+			{
+				this.userName = userName;
+			}
+			else if (i < 3)
+			{
+				System.out.println("Invalid userName - Username autoassigned");
+				this.userName = "ErrPlayer" + counter;
+				
+				
+			}
+			
 		}
 	}
 	/**
