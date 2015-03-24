@@ -64,7 +64,7 @@ public class Player {
 	
 	public boolean getBankruptStatus(){
 		
-		return bankruptStatus;
+		return this.bankruptStatus;
 		
 	}
 	
