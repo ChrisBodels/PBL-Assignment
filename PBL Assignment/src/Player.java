@@ -64,7 +64,10 @@ public class Player {
 	{
 		return this.balance;
 	}
-	
+	/**
+	 * This method sets the user name when entered. 
+	 * @param userName
+	 */
 	public void setUsername(String userName)
 	{
 		if(userName.length() >= 3 && userName.length() <=10)
@@ -72,12 +75,18 @@ public class Player {
 		this.userName = userName;
 		}
 	}
-	
+	/**
+	 * This method will increase the balance.
+	 * @param balance
+	 */
 	public void setBalanceUp(int balance)
 	{
 		this.balance += balance; 
 	}
-	
+	/**
+	 * This method will decrease the balance.
+	 * @param balance
+	 */
 	public void setBalanceDown(int balance)
 	{
 		this.balance -= balance; 
@@ -93,7 +102,7 @@ public class Player {
 		return this.loanStatus;
 	}
 	/**
-	 * This method will change the amount of stocks the player has. 
+	 * This method will change the amount of stocks up if the player has bought stocks. 
 	 * @param stockType
 	 * @param amount
 	 */
@@ -116,7 +125,11 @@ public class Player {
 			playerStores.setStockAmount(amount);
 		}
 	}
-	
+	/**
+	 * This method will change the amount of stocks down if the player has sold stocks. 
+	 * @param stockType
+	 * @param amount
+	 */
 	public void setStocksDown(String stockType, int amount)
 	{
 		if(stockType == "Motors")
@@ -160,7 +173,10 @@ public class Player {
 			return -1;
 		}
 	}
-	
+	/**
+	 * In this method we are gathering all the stocks the current player has.
+	 * @return Stocks. The amount of stocks as type int. 
+	 */
 	public int getTotalStocks()
 	{
 		int i = getStocks("Motors");
