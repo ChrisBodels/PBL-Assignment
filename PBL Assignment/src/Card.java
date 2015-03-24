@@ -24,14 +24,21 @@ public class Card {
 	 * then it displays it in a neat format of the object state that is very much user friendly.
 	 * @return  's the details of a specific card.
 	 */
-	public String toString()
+public String toString()
 	{
-		return (" __________________\n"+
-	            "|     "+stockType+"     |\n" +
-	            "|                  | \n"+
-	            "|        " +value+"        | \n"+
-	            "|                  | \n"+
-	            "|__________________| \n");
+		
+		
+	return("--------------------.\n"+
+	   "| .--------------. || \n"+ 
+	   "| |              | || \n"+ 
+	   "      "+stockType+"           \n"+ 
+   	   "| |              | || \n"+ 
+	   "| |              | || \n"+
+	   "         "+value+"          \n"+ 
+	   "| |              | || \n"+ 
+	   "| |              | || \n"+ 
+	   "|  --------------  || \n"+ 
+	   " .----------------.   \n");
 	}
 	
 	public String getStockType()
