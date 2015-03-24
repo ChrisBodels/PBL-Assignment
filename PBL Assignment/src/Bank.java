@@ -13,10 +13,10 @@ public class Bank {
 				 
 	private Stock motors, shipping, steel, stores;
 	
+	private ArrayList<Player> players, bankruptPlayers, highScore;
 	private ArrayList<Card> cards;
 	private ArrayList<Integer> randomNumber;
 	private Random randomGenerator;
-	private ArrayList<Player> bankruptPlayers, highScore, players;//new for skip turn - Paddy
 	
 	
 	/**
@@ -33,13 +33,14 @@ public class Bank {
 		players = new ArrayList<Player>();
 		cards =  new ArrayList<Card>();
 		randomNumber = new ArrayList<Integer>();
-		bankruptPlayers = new ArrayList<Player>();// new for skip turn - Paddy
-		highScore = new ArrayList<Player>();//moved to bank from driver - Paddy
+		bankruptPlayers = new ArrayList<Player>();
+		highScore = new ArrayList<Player>();
 		randomGenerator = new Random();
 		
 		initialiseCards();
 	
 	}
+	
 	/** 
 	 * This method gets the players that is in the array list.
 	 * @return The players in the array. 
@@ -48,6 +49,7 @@ public class Bank {
 	{
 		return players;
 	}
+	
 	/** 
 	 * This method adds the player into the array list when enterd. 
 	 * @param player
@@ -56,115 +58,118 @@ public class Bank {
 	{
 		players.add(player);
 	}
+	
 	/**
 	 * This method populates the card array and the random number array.
 	 */
-	public void initialiseCards()//UPDATED!!!!
+	public void initialiseCards()
 	{
-		card0 = new Card("Motors", -4);
+		card0 = new Card("Motors",-4);
 		cards.add(card0);
-		cards.set(0, card0);
+		cards.set(0,card0);
 
-		card1 = new Card("Motors", -3);
+		card1 = new Card("Motors",-3);
 		cards.add(card1);
-		cards.set(1, card1);
+		cards.set(1,card1);
+		
 
-		card2 = new Card("Motors", -2);
+		card2 = new Card("Motors",-2);
 		cards.add(card2);
-		cards.set(2, card2);
+		cards.set(2,card2);
+		
 
-		card3 = new Card("Motors", 2);
+		card3 = new Card("Motors",2);
 		cards.add(card3);
-		cards.set(3, card3);
+		cards.set(3,card3);
 
-		card4 = new Card("Motors", 3);
+		card4 = new Card("Motors",3);
 		cards.add(card4);
-		cards.set(4, card4);
+		cards.set(4,card4);
 
-		card5 = new Card("Motors", 4);
+		card5 = new Card("Motors",4);
 		cards.add(card5);
-		cards.set(5, card5);
+		cards.set(5,card5);
 
-		card6 = new Card("Shipping", -4);
+		card6 = new Card("Shipping",-4);
 		cards.add(card6);
-		cards.set(6, card6);
+		cards.set(6,card6);
 
-		card7 = new Card("Shipping", -3);
+		card7 = new Card("Shipping",-3);
 		cards.add(card7);
-		cards.set(7, card7);
+		cards.set(7,card7);
 
-		card8 = new Card("Shipping", -2);
+		card8 = new Card("Shipping",-2);
 		cards.add(card8);
-		cards.set(8, card8);
-
-		card9 = new Card("Shipping", 2);
+		cards.set(8,card8);
+		
+		card9 = new Card("Shipping",2);
 		cards.add(card9);
-		cards.set(9, card9);
+		cards.set(9,card9);
 
-		card10 = new Card("Shipping", 3);
+		card10 = new Card("Shipping",3);
 		cards.add(card10);
-		cards.set(10, card10);
+		cards.set(10,card10);
 
-		card11 = new Card("Shipping", 4);
+		card11 = new Card("Shipping",4);
 		cards.add(card11);
-		cards.set(11, card11);
+		cards.set(11,card11);
 
-		card12 = new Card("Steel", -4);
+		card12 = new Card("Steel",-4);
 		cards.add(card12);
-		cards.set(12, card12);
+		cards.set(12,card12);
 
-		card13 = new Card("Steel", -3);
+		card13 = new Card("Steel",-3);
 		cards.add(card13);
-		cards.set(13, card13);
+		cards.set(13,card13);
 
-		card14 = new Card("Steel", -2);
+		card14 = new Card("Steel",-2);
 		cards.add(card14);
-		cards.set(14, card14);
+		cards.set(14,card14);
 
-		card15 = new Card("Steel", 2);
+		card15 = new Card("Steel",2);
 		cards.add(card15);
-		cards.set(15, card15);
+		cards.set(15,card15);
 
-		card16 = new Card("Steel", 3);
+		card16 = new Card("Steel",3);
 		cards.add(card16);
-		cards.set(16, card16);
+		cards.set(16,card16);
 
-		card17 = new Card("Steel", 4);
+		card17 = new Card("Steel",4);
 		cards.add(card17);
-		cards.set(17, card17);
+		cards.set(17,card17);
 
-		card18 = new Card("Stores", -4);
+		card18 = new Card("Stores",-4);
 		cards.add(card18);
-		cards.set(18, card18);
+		cards.set(18,card18);
 
-		card19 = new Card("Stores", -3);
+		card19 = new Card("Stores",-3);
 		cards.add(card19);
-		cards.set(19, card19);
+		cards.set(19,card19);
 
-		card20 = new Card("Stores", -2);
+		card20 = new Card("Stores",-2);
 		cards.add(card20);
-		cards.set(20, card20);
+		cards.set(20,card20);
 
-		card21 = new Card("Stores", 2);
+		card21 = new Card("Stores",2);
 		cards.add(card21);
-		cards.set(21, card21);
+		cards.set(21,card21);
 
-		card22 = new Card("Stores", 3);
+		card22 = new Card("Stores",3);
 		cards.add(card22);
-		cards.set(22, card22);
+		cards.set(22,card22);
 
-		card23 = new Card("Stores", 4);
+		card23 = new Card("Stores",4);
 		cards.add(card23);
-		cards.set(23, card23);
+		cards.set(23,card23);
 
-		card24 = new Card("Bear", -4);
+		card24 = new Card("Bear",-4);
 		cards.add(card24);
-		cards.set(24, card24);
+		cards.set(24,card24);
 
-		card25 = new Card("Bull", 4);
+		card25 = new Card("Bull",4);
 		cards.add(card25);
-		cards.set(25, card25);
-
+		cards.set(25,card25);
+		
 		randomNumber.add(0);
 		randomNumber.add(1);
 		randomNumber.add(2);
@@ -191,6 +196,7 @@ public class Bank {
 		randomNumber.add(23);
 		randomNumber.add(24);
 		randomNumber.add(25);
+		
 	}
 	
 	public int getStockPrice(String stockType)
@@ -211,7 +217,6 @@ public class Bank {
 		{
 			return stores.getStockValue();
 		}
-		//Not sure about this part, just did it to get it working.
 		else
 		{
 			return -1;
@@ -236,7 +241,6 @@ public class Bank {
 		{
 			return stores.getStockAmount();
 		}
-		//Not sure about this part, just did it to get it working.
 		else
 		{
 			return -1;
@@ -262,68 +266,62 @@ public class Bank {
 			stores.setStockAmount(amount);
 		}
 	}
+	
 	/**
 	 * This method sets the value of all the stocks when updated. 
 	 * @param stockType
 	 * @param amount
 	 */
-	public void setStockValue(String stockType, int amount) {
-		if (stockType == "Motors") {
+	public void setStockValue(String stockType, int amount) 
+	{
+		if (stockType == "Motors") 
+		{
 			motors.setStockValue(amount);
-		} else if (stockType == "Shipping") {
+		} 
+		else if (stockType == "Shipping") 
+		{
 			shipping.setStockValue(amount);
-		} else if (stockType == "Steel") {
+		} 
+		else if (stockType == "Steel") 
+		{
 			steel.setStockValue(amount);
-		} else if (stockType == "Stores") {
+		} 
+		else if (stockType == "Stores") 
+		{
 			stores.setStockValue(amount);
 		}
 	}
-    
-	/**
-	 * This method shows the updated value of stocks. 
-	 * @return the updated values as type string.
-	 */
-	public String updatedStockValue(){
-    		String str = "";
-    		
-    		str += ("The current value of stocks"+ "\n" + "Moters = " + motors.getStockValue() + "\n" +"Steel +" +steel.getStockValue() +
-    		"\n"+ "Shipping = " +shipping.getStockValue() + "\n" + "Stores = " + stores.getStockValue());
-    		
-    		return str;
-    	}
     	
-        public void generateCardIndex() {// UPDATED!!
-
-		for (Player currentPlayer : players) {
-
+     public void generateCardIndex()
+     {
+		for (Player currentPlayer : players)
+		{
 			int index = randomGenerator.nextInt(randomNumber.size());
 			int i = randomNumber.get(index);
 			currentPlayer.setCard(i);
 			randomNumber.remove(index);
-
 		}
 		initialiseCards();
 	}
-	
-	public String generateCard(Player currentPlayer) {
 
-		int i = currentPlayer.getCard();
+	
+	public String generateCard(Player currentPlayer) 
+	{
+        int i = currentPlayer.getCard();
 		return cards.get(i).toString();
 	}
 	
-	public int cardValue(Player currentPlayer){//UPDATED
-		
+	public int cardValue(Player currentPlayer)
+	{
 		int i = currentPlayer.getCard();
 		return   cards.get(i).getValue();
 	}
 	
-	public String getStockType(Player currentPlayer){//UPDATED
-	        
-	        int i = currentPlayer.getCard();
+	public String getStockType(Player currentPlayer)
+	{
+		int i = currentPlayer.getCard();
 		return  cards.get(i).getStockType();
-		
 	}
-
 	
 	public void load() throws Exception
     {
@@ -334,5 +332,4 @@ public class Bank {
     {
     	HandleXML.write(players, "players.xml");
     }
-
 }
