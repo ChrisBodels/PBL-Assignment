@@ -1026,6 +1026,11 @@ public class Driver
 		}
 	}
 	
+	/**
+	 * This method displays the stocks that the player owns and how much of them he owns.
+	 * It also displays the current balance that the player has.
+	 * @param currentPlayer
+	 */
 	public void displayPlayerStockInfo(Player currentPlayer)
 	{
 		System.out.println("\nYour current balance is £"
@@ -1043,6 +1048,10 @@ public class Driver
 		input.nextLine();
 	}
 	
+	/**
+	 * This method displays the stock information which is necessary for the player
+	 * to buy or sell the stocks.
+	 */
 	public void displayBankStockInfo()
 	{
 		System.out.println("\nMotors current stock price: £"
