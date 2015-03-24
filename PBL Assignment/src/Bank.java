@@ -13,11 +13,10 @@ public class Bank {
 				 
 	private Stock motors, shipping, steel, stores;
 	
-	private ArrayList<Player> players;
 	private ArrayList<Card> cards;
 	private ArrayList<Integer> randomNumber;
 	private Random randomGenerator;
-	private ArrayList<Player> bankruptPlayers, highScore;//new for skip turn - Paddy
+	private ArrayList<Player> bankruptPlayers, highScore, players;//new for skip turn - Paddy
 	
 	
 	/**
