@@ -125,6 +125,7 @@ public class Driver
 		}while(!inputOk);
 
 	}
+	
 	/**
 	 * Round menu, a 'sub' main menu, as to what you want to do in the game when the 
 	 * players round comes.
@@ -177,151 +178,174 @@ public class Driver
 			
 			for (Player currentPlayer : players) 
 			{
-				System.out.println(currentPlayer.getUserName() + "'s turn");
-				if (currentPlayer.getLoanStatus() && currentPlayer.getBalance() >= 20)
+				if(!currentPlayer.getBankruptStatus())
 				{
-					currentPlayer.setBalanceDown(20);
-					System.out.println("You currently have a loan so £20 was automatically withdrawn from your balance");
-					System.out.println("Press any key to continue to your main round menu...");
-					input.nextLine();
-					input.nextLine();
-				}
-				else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() >= 1)
-				{
-					while(currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() != 0)
+					System.out.println(currentPlayer.getUserName() + "'s turn");
+					if (currentPlayer.getLoanStatus() && currentPlayer.getBalance() >= 20)
 					{
-						System.out.println("You do not have enough in your current balance to pay your £20 loan fee for this turn. You will have to "
-								+ "sell stocks in order to attempt to pay it.");
-						displayPlayerStockInfo(currentPlayer);
-						displayBankStockInfo();
-						chooseStock("sell", currentPlayer);
-					}
-					if(currentPlayer.getBalance() >= 20)
-					{
-						System.out.println("Congratulations, you have succesfully sold enough stocks to pay your loan fee for this round."
-								+ "\n £20 will be automatically removed from your balance");
+						currentPlayer.setBalanceDown(20);
+						System.out.println("You currently have a loan so £20 was automatically withdrawn from your balance");
 						System.out.println("Press any key to continue to your main round menu...");
 						input.nextLine();
 						input.nextLine();
-						currentPlayer.setBalanceDown(20);
 					}
-					else
+					else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() >= 1)
+					{
+						while(currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() != 0)
+						{
+							System.out.println("You do not have enough in your current balance to pay your £20 loan fee for this turn. You will have to "
+									+ "sell stocks in order to attempt to pay it.");
+							displayPlayerStockInfo(currentPlayer);
+							displayBankStockInfo();
+							chooseStock("sell", currentPlayer);
+						}
+						if(currentPlayer.getBalance() >= 20)
+						{
+							System.out.println("Congratulations, you have succesfully sold enough stocks to pay your loan fee for this round."
+									+ "\n £20 will be automatically removed from your balance");
+							System.out.println("Press any key to continue to your main round menu...");
+							input.nextLine();
+							input.nextLine();
+							currentPlayer.setBalanceDown(20);
+						}
+						else
+						{
+							System.out.println("Unfortunately you are bankrupt and have been eliminated from the game. Thanks for playing!");
+							System.out.println("Press any key to continue...");
+							input.nextLine();
+							input.nextLine();
+							currentPlayer.setBankruptStatus(true);
+							addBankruptPlayerToArray(currentPlayer);
+						}
+					}
+					else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() < 1)
 					{
 						System.out.println("Unfortunately you are bankrupt and have been eliminated from the game. Thanks for playing!");
 						System.out.println("Press any key to continue...");
 						input.nextLine();
 						input.nextLine();
-						removeBankruptPlayer(currentPlayer);
+						currentPlayer.setBankruptStatus(true);
+						addBankruptPlayerToArray(currentPlayer);
+					}
+					
+					if(!currentPlayer.getBankruptStatus())
+					{
+						int option = -1;
+						boolean inputOk = false;
+						do
+						{
+							try
+							{
+								while (option != 0) 
+								{
+									System.out.println("\f");
+									option = roundMenu();
+									switch (option) 
+									{
+										case 1:
+											chooseStock("buy", currentPlayer);
+											break;
+										case 2:
+											chooseStock("sell", currentPlayer);
+											break;
+										case 3:
+											displayPlayerStockInfo(currentPlayer);
+											break;
+										case 4:
+											displayBankStockInfo();
+											break;
+										case 5:
+											System.out.println(bank.generateCard(currentPlayer));
+											System.out.println("\nPress any key to continue..");
+											input.nextLine();
+											input.nextLine();
+											break;
+										case 6:
+											if(!currentPlayer.getLoanStatus())
+											{
+												System.out.println("Loan taken. Your balance has been increased by £80 and you will lose £20 per"
+														+ " turn until you pay off a lump sum of £100 or go bankrupt.");
+												System.out.println("Press any key to continue..");
+												input.nextLine();
+												input.nextLine();
+												currentPlayer.setLoanStatus(true);
+												currentPlayer.setBalanceUp(80);
+											}
+											else
+											{
+												System.out.println("You already have a loan. Repay current one before taking another!");
+												System.out.println("Press any key to continue");
+												input.nextLine();
+												input.nextLine();
+											}
+											break;
+										case 7:
+											if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() >= 100)
+											{
+												System.out.println("Loan successfully paid off!");
+												System.out.println("Press any key to continue...");
+												input.nextLine();
+												input.nextLine();
+												currentPlayer.setBalanceDown(100);
+												currentPlayer.setLoanStatus(false);
+											}
+											else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 100)
+											{
+												System.out.println("You do not have sufficient funds to pay off your loan.");
+												System.out.println("Press any key to continue...");
+												input.nextLine();
+												input.nextLine();
+											}
+											else
+											{
+												System.out.println("You are not currently on loan");
+												System.out.println("Press any key to continue...");
+												input.nextLine();
+												input.nextLine();
+											}
+											break;
+										case 8:
+											try
+											{
+												bank.save();}
+											catch (Exception e)
+											{
+												System.out.println("Error writing to file: " + e);
+											}
+											break; // new save with exception handling
+									}
+								}
+								inputOk=true;
+							}
+							catch(Exception e)
+							{
+								String throwOut = input.nextLine();
+								System.out.println("Numbers expected - you entered text");
+							}
+						}while(!inputOk);
+					}
+					else
+					{
+						System.out.println(currentPlayer.getUserName() + " is now bankrupt. Automatically skipping turn.");
+						System.out.println("Press any key to continue...");
+						input.nextLine();
+						input.nextLine();
 					}
 				}
-				else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 20 && currentPlayer.getTotalStocks() < 1)
+				else
 				{
-					System.out.println("Unfortunately you are bankrupt and have been eliminated from the game. Thanks for playing!");
+					System.out.println(currentPlayer.getUserName() + " is bankrupt. Automatically skipping turn.");
 					System.out.println("Press any key to continue...");
 					input.nextLine();
 					input.nextLine();
-					removeBankruptPlayer(currentPlayer);
 				}
-				
-				int option = -1;
-				boolean inputOk = false;
-				do
-				{
-					try
-					{
-						while (option != 0) 
-						{
-							System.out.println("\f");
-							option = roundMenu();
-							switch (option) 
-							{
-								case 1:
-									chooseStock("buy", currentPlayer);
-								break;
-								case 2:
-									chooseStock("sell", currentPlayer);
-								break;
-								case 3:
-									displayPlayerStockInfo(currentPlayer);
-								break;
-								case 4:
-									displayBankStockInfo();
-								break;
-								case 5:
-									System.out.println(bank.generateCard(currentPlayer));
-									System.out.println("\nPress any key to continue..");
-									input.nextLine();
-									input.nextLine();
-								break;
-								case 6:
-									if(!currentPlayer.getLoanStatus())
-									{
-										System.out.println("Loan taken. Your balance has been increased by £80 and you will lose £20 per"
-												+ " turn until you pay off a lump sum of £100 or go bankrupt.");
-										System.out.println("Press any key to continue..");
-										input.nextLine();
-										input.nextLine();
-										currentPlayer.setLoanStatus(true);
-										currentPlayer.setBalanceUp(80);
-									}
-									else
-									{
-										System.out.println("You already have a loan. Repay current one before taking another!");
-										System.out.println("Press any key to continue");
-										input.nextLine();
-										input.nextLine();
-									}
-								break;
-								case 7:
-									if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() >= 100)
-									{
-										System.out.println("Loan successfully paid off!");
-										System.out.println("Press any key to continue...");
-										input.nextLine();
-										input.nextLine();
-										currentPlayer.setBalanceDown(100);
-										currentPlayer.setLoanStatus(false);
-									}
-									else if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() < 100)
-									{
-										System.out.println("You do not have sufficient funds to pay off your loan.");
-										System.out.println("Press any key to continue...");
-										input.nextLine();
-										input.nextLine();
-									}
-									else
-									{
-										System.out.println("You are not currently on loan");
-										System.out.println("Press any key to continue...");
-										input.nextLine();
-										input.nextLine();
-									}
-								break;
-								case 8:
-									try
-									{
-										bank.save();}
-									catch (Exception e)
-									{
-										System.out.println("Error writing to file: " + e);
-									}
-								break; // new save with exception handling
-							}
-						}
-						inputOk=true;
-					}
-					catch(Exception e)
-					{
-						String throwOut = input.nextLine();
-						System.out.println("Numbers expected - you entered text");
-					}
-				}while(!inputOk);
 			}
 			roundNumber++;
 			setUpdatedStockValue();
 		}
         System.out.println(finalResults()+ "\n" +getBankruptResults());
 	}
+	
 	/**
 	 * This method adds players to the game.
 	 * @throws Exception
@@ -361,6 +385,7 @@ public class Driver
 		}	  
 		mainRound();
 	}
+	
 	/**
 	 * A menu for buying or selling the stocks.
 	 * @param buyOrSell
@@ -392,12 +417,6 @@ public class Driver
 		}while(!inputOk);
 		return option;
 	}
-	
-	/*
-	 * Think we're going to need a lot of validation for this stuff like checking whether or not the player/bank has
-	 * the appropriate stocks/funds to carry out the action.
-	 * -Chris
-	 */
 	
 	public void chooseStock(String buyOrSell, Player currentPlayer)
 	{
@@ -461,6 +480,7 @@ public class Driver
 		}
 		
 	}
+	
 	/**
 	 * This method allows the player to chose the amount of stock he/she wants to buy.
 	 * @param stockType
@@ -500,6 +520,7 @@ public class Driver
 		return option;
 		
 	}
+	
 	/**
 	 * This method shows the amount of stocks that are avalible and to buy and sell stocks.
 	 * @param stockType
@@ -511,213 +532,206 @@ public class Driver
 		int option = chooseAmountMenu(buyOrSell);
 		while(option != 0)
 		{
-		while(option < 1 || option > 9)
-		{
-			System.out.println("Invalid option entered. Please enter a valid option between 1 and 9");
-			option = chooseAmountMenu(buyOrSell);
-		}
-		if(buyOrSell == "buy")
-		{
-			switch(option)
+			while(option < 1 || option > 9)
 			{
-				case 1:
-					if(bank.getStockAmount(stockType) >= 1 && currentPlayer.getBalance() >= bank.getStockPrice(stockType))
-					{
-						buyStock(stockType, 1, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 2:
-					if(bank.getStockAmount(stockType) >= 2 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*2)
-					{
-						buyStock(stockType, 2, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 3:
-					if(bank.getStockAmount(stockType) >= 3 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*3)
-					{
-						buyStock(stockType, 3, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 4:
-					if(bank.getStockAmount(stockType) >= 4 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*4)
-					{
-						buyStock(stockType, 4, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 5:
-					if(bank.getStockAmount(stockType) >= 5 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*5)
-					{
-						buyStock(stockType, 5, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 6:
-					if(bank.getStockAmount(stockType) >= 10 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*10)
-					{
-						buyStock(stockType, 10, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 7:
-					if(bank.getStockAmount(stockType) >= 15 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*15)
-					{
-						buyStock(stockType, 15, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 8:
-					if(bank.getStockAmount(stockType) >= 20 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*20)
-					{
-						buyStock(stockType, 20, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 9:
-					if(bank.getStockAmount(stockType) >= 25 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*25)
-					{
-						buyStock(stockType, 25, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
+				System.out.println("Invalid option entered. Please enter a valid option between 1 and 9");
+				option = chooseAmountMenu(buyOrSell);
+			}
+			if(buyOrSell == "buy")
+			{
+				switch(option)
+				{
+					case 1:
+						if(bank.getStockAmount(stockType) >= 1 && currentPlayer.getBalance() >= bank.getStockPrice(stockType))
+						{
+							buyStock(stockType, 1, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 2:
+						if(bank.getStockAmount(stockType) >= 2 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*2)
+						{
+							buyStock(stockType, 2, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 3:
+						if(bank.getStockAmount(stockType) >= 3 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*3)
+						{
+							buyStock(stockType, 3, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 4:
+						if(bank.getStockAmount(stockType) >= 4 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*4)
+						{
+							buyStock(stockType, 4, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 5:
+						if(bank.getStockAmount(stockType) >= 5 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*5)
+						{
+							buyStock(stockType, 5, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 6:
+						if(bank.getStockAmount(stockType) >= 10 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*10)
+						{
+							buyStock(stockType, 10, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 7:
+						if(bank.getStockAmount(stockType) >= 15 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*15)
+						{
+							buyStock(stockType, 15, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 8:
+						if(bank.getStockAmount(stockType) >= 20 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*20)
+						{
+							buyStock(stockType, 20, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 9:
+						if(bank.getStockAmount(stockType) >= 25 && currentPlayer.getBalance() >= bank.getStockPrice(stockType)*25)
+						{
+							buyStock(stockType, 25, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+				}
+			}
+			else if(buyOrSell == "sell")
+			{
+				switch(option)
+				{
+					case 1:
+						if(currentPlayer.getStocks(stockType) >= 1)
+						{
+							sellStock(stockType, 1, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 2:
+						if(currentPlayer.getStocks(stockType) >= 2)
+						{
+							sellStock(stockType, 2, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 3:
+						if(currentPlayer.getStocks(stockType) >= 3)
+						{
+							sellStock(stockType, 3, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 4:
+						if(currentPlayer.getStocks(stockType) >= 4)
+						{
+							sellStock(stockType, 4, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 5:
+						if(currentPlayer.getStocks(stockType) >= 5)
+						{
+							sellStock(stockType, 5, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 6:
+						if(currentPlayer.getStocks(stockType) >= 10)
+						{
+							sellStock(stockType, 10, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+						break;
+					case 7:
+						if(currentPlayer.getStocks(stockType) >= 15)
+						{
+							sellStock(stockType, 15, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 8:
+						if(currentPlayer.getStocks(stockType) >= 20)
+						{
+							sellStock(stockType, 20, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+					break;
+					case 9:
+						if(currentPlayer.getStocks(stockType) >= 25)
+						{
+							sellStock(stockType, 25, currentPlayer);
+						}
+						else
+						{
+							menuCall(buyOrSell);
+						}
+						break;
+				}
 			}
 		}
-		else if(buyOrSell == "sell")
-		{
-			switch(option)
-			{
-				case 1:
-					if(currentPlayer.getStocks(stockType) >= 1)
-					{
-						sellStock(stockType, 1, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 2:
-					if(currentPlayer.getStocks(stockType) >= 2)
-					{
-						sellStock(stockType, 2, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 3:
-					if(currentPlayer.getStocks(stockType) >= 3)
-					{
-						sellStock(stockType, 3, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 4:
-					if(currentPlayer.getStocks(stockType) >= 4)
-					{
-						sellStock(stockType, 4, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 5:
-					if(currentPlayer.getStocks(stockType) >= 5)
-					{
-						sellStock(stockType, 5, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 6:
-					if(currentPlayer.getStocks(stockType) >= 10)
-					{
-						sellStock(stockType, 10, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 7:
-					if(currentPlayer.getStocks(stockType) >= 15)
-					{
-						sellStock(stockType, 15, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 8:
-					if(currentPlayer.getStocks(stockType) >= 20)
-					{
-						sellStock(stockType, 20, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-				case 9:
-					if(currentPlayer.getStocks(stockType) >= 25)
-					{
-						sellStock(stockType, 25, currentPlayer);
-					}
-					else
-					{
-						menuCall(buyOrSell);
-					}
-				break;
-			}
-		}
-	}
 	}
 	
-	/*
-	 * The method that will be called whenever a player is buying stocks
-	 * Still not 100% finished or anything but it's a basic version at least
-	 * Need to add a way to remove stocks from the bank still
-	 * No validation yet either
-	 * -Chris
-	 */
 	 /**
 	 * This method allows the user/players to buy stock.
 	 * @param stockType
@@ -772,13 +786,6 @@ public class Driver
 		}
 	}
 	
-	/*
-	 * The method that will be called whenever a player is selling stocks
-	 * Still not 100% finished or anything but it's a basic version at least
-	 * Need to add a way to add stocks back to the bank still
-	 * No validation yet either 
-	 * -Chris
-	 */
 	 /**
 	 * This method allows the players to sell their Stocks.
 	 * @param stockType
@@ -832,6 +839,7 @@ public class Driver
 			}
 		}
 	}
+	
 	/**
 	 * This method allows the user to load the scores from previous game.
 	 * @throws Exception
@@ -889,15 +897,15 @@ public class Driver
 		players.clear();
 		runMenu();
 	}
+	
 	/**
 	 * This method removes a player that goes bankrupt.
 	 * @param currentPlayer
 	 */
-	public void removeBankruptPlayer(Player currentPlayer) 
+	public void addBankruptPlayerToArray(Player currentPlayer) 
 	{
 			String userName = currentPlayer.getUserName();
 			bankruptPlayers.add(userName);
-			players.remove(currentPlayer);
 	}
 
 	public String getBankruptResults() 
@@ -915,6 +923,7 @@ public class Driver
 			return str;
 		}
 	}
+	
 	/**
 	 * This method shows the final results of players for this game.
 	 * @return
@@ -1049,5 +1058,4 @@ public class Driver
 		input.nextLine();
 	}
 	
- 	
 }
