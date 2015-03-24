@@ -46,13 +46,11 @@ public class Driver
 	private int mainMenu()
 	{
 		System.out.println(
-				
- "                                                                                              __ \n"+
- " _____ _           _                    _    _____ _                      _____              |  |\n"+
- "|   __| |_ ___ ___| |_ ___    ___ ___ _| |  |   __| |_ ___ ___ ___ ___   |   __|___ _____ ___|  |\n"+
- "|__   |  _| . |  _| '_|_ -|  | .'|   | . |  |__   |   | .'|  _| -_|_ -|  |  |  | .'|     | -_|__|\n"+
- "|_____|_| |___|___|_,_|___|  |__,|_|_|___|  |_____|_|_|__,|_| |___|___|  |_____|__,|_|_|_|___|__|\n");
-                    
+				 "                                                                                              __ \n"+
+				 " _____ _           _                    _    _____ _                      _____              |  |\n"+
+				 "|   __| |_ ___ ___| |_ ___    ___ ___ _| |  |   __| |_ ___ ___ ___ ___   |   __|___ _____ ___|  |\n"+
+				 "|__   |  _| . |  _| '_|_ -|  | .'|   | . |  |__   |   | .'|  _| -_|_ -|  |  |  | .'|     | -_|__|\n"+
+				 "|_____|_| |___|___|_,_|___|  |__,|_|_|___|  |_____|_|_|__,|_| |___|___|  |_____|__,|_|_|_|___|__|\n");
 
 		System.out.println("What would you like to do?");
 		System.out.println("  1) Start game");
@@ -113,7 +111,7 @@ public class Driver
 					input.nextLine();
 					input.nextLine(); 
 
-					System.out.println("\f"); //clear the terminal window
+					System.out.println("\f");
 					option = mainMenu(); // this displays the main menu again
 				}
 				// option 0 was chosen, so the program is exiting
@@ -166,11 +164,6 @@ public class Driver
 		return option;
 	}
 	
-	/*
-	 * Basic version of the main round method which will be called at the start of the game and run until game is over
-	 * Not sure on specifics yet, just doing it to get things working and working through things in my head.
-	 * -Chris
-	*/
 	public void mainRound() throws Exception 
 	{
 		int roundNumber = 1;
@@ -248,22 +241,22 @@ public class Driver
 									{
 										case 1:
 											chooseStock("buy", currentPlayer);
-											break;
+										break;
 										case 2:
 											chooseStock("sell", currentPlayer);
-											break;
+										break;
 										case 3:
 											displayPlayerStockInfo(currentPlayer);
-											break;
+										break;
 										case 4:
 											displayBankStockInfo();
-											break;
+										break;
 										case 5:
 											System.out.println(bank.generateCard(currentPlayer));
 											System.out.println("\nPress any key to continue..");
 											input.nextLine();
 											input.nextLine();
-											break;
+										break;
 										case 6:
 											if(!currentPlayer.getLoanStatus())
 											{
@@ -282,7 +275,7 @@ public class Driver
 												input.nextLine();
 												input.nextLine();
 											}
-											break;
+										break;
 										case 7:
 											if(currentPlayer.getLoanStatus() && currentPlayer.getBalance() >= 100)
 											{
@@ -307,7 +300,7 @@ public class Driver
 												input.nextLine();
 												input.nextLine();
 											}
-											break;
+										break;
 										case 8:
 											try
 											{
@@ -316,7 +309,7 @@ public class Driver
 											{
 												System.out.println("Error writing to file: " + e);
 											}
-											break; // new save with exception handling
+										break; // new save with exception handling
 									}
 								}
 								inputOk=true;
@@ -360,33 +353,44 @@ public class Driver
 		int playerAmount = input.nextInt();
 		int counter = 1;
   
-		if(playerAmount >=3 && playerAmount <=6 )
-		{ 
-			while (counter <= playerAmount)
-			{
-				boolean inputOk = false;
-				do
-				{
-					try
-					{
-						System.out.println("Please enter player number "  +counter+ "'s name");
-						String name = input.next();
-						bank.add(new Player(name));
-						counter ++;
-						inputOk = true;
-					}
-					catch(Exception e)
-					{
-						String throwOut = input.nextLine();
-						System.out.println("Text expected - you entered numbers");
-					}
-				}while(!inputOk);
-			}	
+		while(playerAmount < 3 || playerAmount > 6)
+		{
+			System.out.println("Invalid number entered. Please enter a number between 3 and 6");
+			playerAmount = input.nextInt();
 		}
-		else
-		{	
-			System.out.println("Please enter a value between 3 and 6.");
-		}	  
+		while (counter <= playerAmount)
+		{
+			boolean inputOk = false;
+			do
+			{
+				try
+				{
+					System.out.println("Please enter player number "  +counter+ "'s name");
+					String name = input.next();
+					while(name.length() < 3)
+					{
+						System.out.println("Invalid name entered. Please enter a name with at least 3 characters.");
+						name = input.nextLine();
+					}
+					if(name.length() > 15)
+					{
+						System.out.println("Name too long. Will automatically be shortened to first 15 characters.");
+						bank.add(new Player(name.substring(0, 15)));
+					}
+					else
+					{
+						bank.add(new Player(name));
+					}
+					counter ++;
+					inputOk = true;
+				}
+				catch(Exception e)
+				{
+					String throwOut = input.nextLine();
+					System.out.println("Text expected - you entered numbers");
+				}
+			}while(!inputOk);
+		}	
 		mainRound();
 	}
 	
@@ -504,7 +508,7 @@ public class Driver
 		System.out.println("  7) Fifteen stocks");
 		System.out.println("  8) Twenty stocks");
 		System.out.println("  9) Twenty-Five stocks");
-		System.out.println("  0) Back");
+		System.out.println("  0) Cancel");
 		
 		int option = 0;
 		boolean inputOk = false;
@@ -526,7 +530,7 @@ public class Driver
 	}
 	
 	/**
-	 * This method shows the amount of stocks that are avalible and to buy and sell stocks.
+	 * This method shows the amount of stocks that are available and to buy and sell stocks.
 	 * @param stockType
 	 * @param buyOrSell
 	 * @param currentPlayer
@@ -534,7 +538,7 @@ public class Driver
 	public void chooseAmount(String stockType, String buyOrSell, Player currentPlayer)
 	{
 		int option = chooseAmountMenu(buyOrSell);
-		while(option != 0)
+		if(option != 0)
 		{
 			while(option < 1 || option > 9)
 			{
@@ -897,7 +901,7 @@ public class Driver
 		input.nextLine(); 
 
 		
-		System.out.println("\f");//clears the terminal window
+		System.out.println("\f");
 		players.clear();
 		runMenu();
 	}
@@ -1061,5 +1065,4 @@ public class Driver
 		input.nextLine();
 		input.nextLine();
 	}
-	
 }
