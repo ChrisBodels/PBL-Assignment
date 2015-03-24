@@ -480,6 +480,7 @@ public class Driver
 		System.out.println("  7) Fifteen stocks");
 		System.out.println("  8) Twenty stocks");
 		System.out.println("  9) Twenty-Five stocks");
+		System.out.println("  0) Back");
 		
 		int option = 0;
 		boolean inputOk = false;
