@@ -15,7 +15,7 @@ public class Stock {
 	public Stock(String stockType)
 	{
 		this.stockValue = 10;
-		this.stockAmount = 28; //Check this number
+		this.stockAmount = 28;
 		this.stockType = stockType;
 	}
 	
@@ -26,20 +26,21 @@ public class Stock {
 	
 	public void setStockAmount(int stockAmount)
 	{
-			this.stockAmount += stockAmount;
+		this.stockAmount += stockAmount;
 	}
 	
 	public int getStockValue()
 	{
 		return this.stockValue;
 	}
+	
 	/**
 	 * This method sets the stock value so it will not go over 20 and cannot go less than 0.
 	 * @param stockValue
 	 */
 	public void setStockValue(int stockValue)
 	{
-		int i = this.stockValue += stockValue;
+		int i = getStockValue() + stockValue;
 		if(i >= 0 && i <= 20)
 		{
 			this.stockValue += stockValue;
@@ -52,14 +53,5 @@ public class Stock {
 		{
 			this.stockValue = 20;
 		}
-	}
-	
-	/**
-	 * This builds a string of all the information that this class holds, then it displays it in a neat format of the object state.
-	 * @return  's the details of a specific stock. 
-	 */
-	public String toString()
-	{
-		return "Stock Type: " + stockType + "/nStock Amount: " + stockAmount + "/nStock Value: " + stockValue;
 	}
 }
