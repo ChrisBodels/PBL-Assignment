@@ -33,7 +33,10 @@ public class Stock {
 	{
 		return this.stockValue;
 	}
-	
+	/**
+	 * This method sets the stock value so it will not go over 20 and cannot go less than 0.
+	 * @param stockValue
+	 */
 	public void setStockValue(int stockValue)
 	{
 		int i = this.stockValue += stockValue;
